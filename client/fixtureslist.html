@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceefax FPL Draft Fixtures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button onclick="window.location.href='index.html'" class="ceefax-back-button">BACK</button>
+
+    <div class="ceefax-container">
+        <div class="ceefax-header">
+            <div class="ceefax-page-number">P306</div>
+            <div id="ceefax-time">00:00:00</div>
+        </div>
+
+        <h1 id="league-title" class="ceefax-title">FPL DRAFT LEAGUE FIXTURES</h1>
+
+        <div class="ceefax-content">
+            <div class="ceefax-gameweek-nav">
+                <button id="prev-gameweek-button" class="ceefax-gameweek-button">&lt; PREV</button>
+                <div id="current-gameweek" class="ceefax-gameweek-display">GAMEWEEK 1</div>
+                <button id="next-gameweek-button" class="ceefax-gameweek-button">NEXT &gt;</button>
+            </div>
+
+            <div id="fixtures-container" class="ceefax-fixtures-content">
+                <div class="ceefax-loading">LOADING FIXTURES...</div>
+            </div>
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item">HOME P100</span>
+                <span class="ceefax-nav-item"><a href="fpl.html" style="color: inherit; text-decoration: none;">STANDINGS P305</a></span>
+            </div>
+            <div class="ceefax-update">UPDATED: 00:00</div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="fixtureslist.js"></script>
+</body>
+</html>

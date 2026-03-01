@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(~/.nvm/versions/node/v20.17.0/bin/node:*)",
+      "Bash(~/.nvm/versions/node/v20.17.0/bin/npm --version)",
+      "Bash(PGPASSWORD=Frankel100 /Library/PostgreSQL/17/bin/psql:*)"
+    ]
+  }
+}

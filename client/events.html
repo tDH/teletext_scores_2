@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceefax Match Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ceefax-container">
+        <button class="ceefax-back-button" onclick="window.location.href='index.html'">BACK</button>
+
+        <div class="ceefax-header">
+            <span class="ceefax-page-number">P310</span>
+            <span id="ceefax-time">14:30:45</span>
+        </div>
+
+        <h1 class="ceefax-title" id="match-title">MATCH EVENTS</h1>
+
+        <div class="ceefax-content">
+            <div class="ceefax-match-overview">
+                <!-- Match overview will be populated by JavaScript -->
+                <div class="ceefax-loading">LOADING MATCH DATA...</div>
+            </div>
+
+            <div class="ceefax-events-container">
+                <!-- Events will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item">INDEX P301</span>
+                <span class="ceefax-nav-item">LEAGUE P302</span>
+            </div>
+            <div class="ceefax-update">LAST UPDATED: --:--</div>
+        </div>
+    </div>
+
+    <script src="events.js"></script>
+</body>
+</html>

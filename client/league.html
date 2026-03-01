@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceefax League Scores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ceefax-container">
+        <button class="ceefax-back-button" onclick="window.location.href='index.html'">BACK</button>
+
+        <div class="ceefax-header">
+            <span class="ceefax-page-number">P302</span>
+            <span id="ceefax-time">14:30:45</span>
+            <!-- Page indicator will be added here dynamically when needed -->
+        </div>
+
+        <h1 class="ceefax-title" id="league-title">LEAGUE SCORES</h1>
+
+        <div class="ceefax-content">
+            <div class="ceefax-category">
+                <div class="ceefax-scores">
+                    <div class="ceefax-loading">LOADING SCORES...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item">INDEX P301</span>
+                <span class="ceefax-nav-item">LIVE ALL P303</span>
+            </div>
+            <div class="ceefax-update">LAST UPDATED: --:--</div>
+        </div>
+    </div>
+
+    <script src="league.js"></script>
+</body>
+</html>

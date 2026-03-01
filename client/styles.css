@@ -1,0 +1,1189 @@
+/* Ceefax 1988 Retro Styling */
+:root {
+  --ceefax-blue: #0000aa;
+  --ceefax-black: #000000;
+  --ceefax-white: #ffffff;
+  --ceefax-yellow: #ffff00;
+  --ceefax-red: #ff0000;
+  --ceefax-cyan: #00ffff;
+  --ceefax-green: #00ff00;
+  --ceefax-magenta: #ff00ff;
+}
+
+body {
+  background-color: var(--ceefax-black);
+  color: var(--ceefax-white);
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.ceefax-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 2px solid var(--ceefax-blue);
+  padding: 10px;
+}
+
+.ceefax-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-white);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ceefax-page-number {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+}
+
+.ceefax-title {
+  color: var(--ceefax-white);
+  text-align: center;
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.ceefax-content {
+  margin-top: 10px;
+}
+
+.ceefax-row {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.ceefax-item {
+  background-color: var(--ceefax-black);
+  padding: 5px;
+  margin-right: 5px;
+  border-left: 3px solid var(--ceefax-cyan);
+}
+
+.ceefax-highlight {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+}
+
+.ceefax-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 5px;
+  border-top: 1px solid var(--ceefax-blue);
+}
+
+.ceefax-button {
+  background-color: var(--ceefax-red);
+  color: var(--ceefax-white);
+  border: none;
+  padding: 8px 15px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* BBC Logo styling */
+.ceefax-logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.ceefax-logo {
+  height: 40px; /* Larger size since it's now the main title */
+}
+
+/* Adjust header styling to accommodate the logo */
+.ceefax-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-white);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.ceefax-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 15px;
+  background-color: var(--ceefax-white);
+  animation: blink 1s infinite;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* Additional styles for the scores display */
+.ceefax-category {
+  margin-bottom: 20px;
+}
+
+.ceefax-category-title {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 3px 5px;
+  margin: 0 0 5px 0;
+}
+
+.ceefax-match {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  padding: 2px 0;
+}
+
+.ceefax-team {
+  width: 40%;
+}
+
+.ceefax-team.home {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.ceefax-team.away {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.ceefax-score {
+  width: 20%;
+  text-align: center;
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+}
+
+.ceefax-navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.ceefax-nav-item {
+  color: var(--ceefax-cyan);
+}
+
+.ceefax-update {
+  color: var(--ceefax-green);
+}
+
+#ceefax-time {
+  color: var(--ceefax-cyan);
+}
+/* Additional styles for API content */
+.ceefax-loading {
+  color: var(--ceefax-cyan);
+  text-align: center;
+  padding: 10px;
+}
+
+.ceefax-error {
+  color: var(--ceefax-red);
+  text-align: center;
+  padding: 10px;
+}
+
+.ceefax-info {
+  color: var(--ceefax-white);
+  text-align: center;
+  padding: 10px;
+}
+
+/* Make sure team names don't overflow */
+.ceefax-team {
+  width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Styles for league listing page */
+.ceefax-league-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 5px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+.ceefax-league-item:hover {
+  background-color: var(--ceefax-blue);
+  border-left-color: var(--ceefax-yellow);
+}
+
+.ceefax-league-name {
+  color: var(--ceefax-white);
+  width: 70%;
+}
+
+.ceefax-league-page {
+  color: var(--ceefax-cyan);
+}
+
+.ceefax-league-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 3px 5px;
+  margin: 8px 0 3px 0;
+  font-weight: bold;
+}
+
+/* Styles for goal scorers */
+.ceefax-scorers {
+  margin: 0 0 8px 15px;
+  padding-top: 1px;
+  font-size: 0.9em;
+  border-left: 2px solid var(--ceefax-blue);
+  padding-left: 5px;
+}
+
+.ceefax-team-scorers {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.ceefax-team-indicator {
+  color: var(--ceefax-cyan);
+  margin-right: 5px;
+  font-weight: bold;
+  min-width: 15px;
+}
+
+.ceefax-scorers-list {
+  color: var(--ceefax-white);
+}
+
+
+/* Scorer styles */
+.ceefax-scorers-container {
+  display: flex;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.ceefax-team-scorers {
+  font-size: 0.85em;
+  color: var(--ceefax-cyan);
+  overflow: visible;
+}
+
+.ceefax-team-scorers.home {
+  width: 40%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.ceefax-team-scorers.away {
+  width: 40%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.ceefax-score-spacer {
+  width: 20%;
+}
+
+.ceefax-scorer {
+  margin-bottom: 1px;
+  white-space: nowrap;
+}
+
+/* Updated styles for scorers alignment */
+.ceefax-match-container {
+  margin-bottom: 12px;
+  border-left: 3px solid var(--ceefax-blue);
+  padding-left: 3px;
+  width: 100%;
+}
+
+.ceefax-match {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0;
+  position: relative;
+}
+
+.ceefax-match-teams {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+}
+
+.ceefax-team {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ceefax-team.home {
+  text-align: right;
+  width: 40%;
+  padding-right: 10px;
+}
+
+.ceefax-team.away {
+  text-align: left;
+  width: 40%;
+  padding-left: 10px;
+}
+
+.ceefax-score {
+  width: 20%;
+  text-align: center;
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+}
+
+.ceefax-status {
+  position: absolute;
+  right: 5px;
+  color: var(--ceefax-cyan);
+}
+
+.ceefax-scorers-container {
+  display: flex;
+  font-size: 0.85em;
+  margin-top: 1px;
+  padding: 0 5px;
+  justify-content: center;
+}
+
+.ceefax-scorer {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.ceefax-team-scorers {
+  color: var(--ceefax-cyan);
+  overflow: hidden;
+}
+
+.ceefax-team-scorers.home {
+  width: 40%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.ceefax-team-scorers.away {
+  width: 40%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* Ensure the spacer width is the same as the score */
+.ceefax-score-spacer {
+  width: 20%;
+  text-align: center;
+}
+
+/* Spacer to align scorers with score */
+.ceefax-score-spacer {
+  width: 20%;
+  text-align: center;
+}
+
+/* Updated back button styling */
+.ceefax-back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.ceefax-back-button:hover {
+  background-color: var(--ceefax-yellow);
+  color: var(--ceefax-blue);
+}
+
+/* Styles for Draft League page */
+.ceefax-draft-content {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.ceefax-draft-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 3px 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ceefax-draft-table-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 2px 5px;
+  margin: 8px 0 3px 0;
+  font-weight: bold;
+}
+
+.ceefax-draft-team {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 5px;
+  border-left: 3px solid transparent;
+}
+
+.ceefax-draft-team:nth-child(3) {
+  border-left-color: var(--ceefax-yellow); /* 1st place */
+}
+
+.ceefax-draft-team:nth-child(4) {
+  border-left-color: var(--ceefax-cyan); /* 2nd place */
+}
+
+.ceefax-draft-team:nth-child(5) {
+  border-left-color: var(--ceefax-green); /* 3rd place */
+}
+
+/* Top 4 — promotion zone: pos + team name green only */
+.ceefax-standing-promotion .ceefax-draft-pos,
+.ceefax-standing-promotion .ceefax-draft-team-name {
+  color: var(--ceefax-green);
+}
+
+/* Bottom 4 — relegation zone: pos + team name red only */
+.ceefax-standing-relegation .ceefax-draft-pos,
+.ceefax-standing-relegation .ceefax-draft-team-name {
+  color: var(--ceefax-red);
+}
+
+.ceefax-draft-pos {
+  width: 8%;
+  text-align: center;
+  color: var(--ceefax-white);
+}
+
+.ceefax-draft-team-name {
+  width: 50%;
+  color: var(--ceefax-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ceefax-draft-played {
+  width: 10%;
+  color: var(--ceefax-cyan);
+  text-align: center;
+}
+
+.ceefax-draft-record {
+  width: 22%;
+  color: var(--ceefax-cyan);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ceefax-draft-points {
+  width: 10%;
+  color: var(--ceefax-yellow);
+  text-align: right;
+}
+
+.ceefax-chart-container {
+  width: 100%;
+  height: 300px;
+  background-color: var(--ceefax-black);
+  margin-top: 20px;
+  border: 1px solid var(--ceefax-blue);
+  padding: 10px;
+}
+
+/* Scorer styles */
+.ceefax-scorers-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.ceefax-team-scorers {
+  font-size: 0.85em;
+  color: var(--ceefax-cyan);
+}
+
+.ceefax-team-scorers.home {
+  width: 40%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.ceefax-team-scorers.away {
+  width: 40%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.ceefax-score-spacer {
+  width: 20%;
+}
+
+.ceefax-scorer {
+  margin-bottom: 1px;
+}
+
+
+/* Event page specific styles */
+.ceefax-match-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-white);
+  padding: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.ceefax-match-date {
+  color: var(--ceefax-yellow);
+  margin-bottom: 5px;
+}
+
+.ceefax-match-status {
+  color: var(--ceefax-cyan);
+  margin-top: 5px;
+}
+
+.ceefax-match-venue {
+  color: var(--ceefax-white);
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.ceefax-events-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 3px 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.ceefax-event-section {
+  margin-bottom: 15px;
+}
+
+.ceefax-event-section-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 2px 5px;
+  margin: 8px 0 3px 0;
+}
+
+.ceefax-event-item {
+  display: flex;
+  padding: 2px 0;
+  border-left: 3px solid transparent;
+}
+
+.ceefax-event-time {
+  width: 15%;
+  color: var(--ceefax-white);
+  text-align: center;
+}
+
+.ceefax-event-team {
+  width: 25%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ceefax-event-team.home {
+  color: var(--ceefax-yellow);
+  text-align: right;
+  padding-right: 5px;
+}
+
+.ceefax-event-team.away {
+  color: var(--ceefax-green);
+  text-align: left;
+  padding-left: 5px;
+}
+
+.ceefax-event-description {
+  width: 60%;
+  color: var(--ceefax-white);
+  padding-left: 10px;
+}
+
+/* Color-coding for different event types */
+.ceefax-event-item.goal {
+  border-left-color: var(--ceefax-yellow);
+}
+
+.ceefax-event-item.card-yellow {
+  border-left-color: var(--ceefax-yellow);
+}
+
+.ceefax-event-item.card-red {
+  border-left-color: var(--ceefax-red);
+}
+
+.ceefax-event-item.substitution {
+  border-left-color: var(--ceefax-cyan);
+}
+
+.ceefax-event-item.var {
+  border-left-color: var(--ceefax-magenta);
+}
+
+/* Clickable elements styling */
+.ceefax-team.home:hover, .ceefax-team.away:hover {
+  color: var(--ceefax-cyan);
+  text-decoration: underline;
+}
+
+.ceefax-score:hover {
+  color: var(--ceefax-green);
+  text-decoration: underline;
+}
+
+/* Green dot indicator for leagues with fixtures today */
+
+.ceefax-fixture-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--ceefax-green);
+  border-radius: 50%;
+  margin-left: 5px;
+  position: absolute;
+  right: 60px; /* Position it to the left of the page number */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Adjust layout for league names with indicators */
+.ceefax-league-name {
+  display: flex;
+  align-items: center;
+}
+
+
+/* Fixture indicators for leagues */
+.ceefax-league-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 5px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+.ceefax-league-name {
+  color: var(--ceefax-white);
+  width: 70%;
+}
+
+.ceefax-fixture-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--ceefax-green);
+  border-radius: 50%;
+  margin-left: 5px;
+  position: absolute;
+  right: 60px; /* Position it to the left of the page number */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ceefax-league-page {
+  color: var(--ceefax-cyan);
+  width: 30%;
+  text-align: right;
+}
+
+.ceefax-league-item:hover {
+  background-color: var(--ceefax-blue);
+  border-left-color: var(--ceefax-yellow);
+}
+
+/* Pagination styles */
+.ceefax-page {
+  width: 100%;
+}
+
+.ceefax-page-indicator {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+  margin-left: auto;
+}
+
+/* Updated scorer styles for line breaks */
+.ceefax-scorer {
+  display: block;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.ceefax-team-scorers {
+  display: flex;
+  flex-direction: column;
+}
+
+.ceefax-team-scorers.home {
+  align-items: flex-end;
+}
+
+.ceefax-team-scorers.away {
+  align-items: flex-start;
+}
+
+/* League ID page specific styles */
+.ceefax-filter-container {
+  margin-bottom: 15px;
+}
+
+.ceefax-search {
+  width: 100%;
+  background-color: var(--ceefax-black);
+  color: var(--ceefax-white);
+  border: 1px solid var(--ceefax-blue);
+  padding: 5px;
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+
+.ceefax-league-table-header {
+  display: flex;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 3px 5px;
+  font-weight: bold;
+}
+
+.ceefax-country-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 2px 5px;
+  margin-top: 8px;
+}
+
+.ceefax-league-item-row {
+  display: flex;
+  padding: 2px 5px;
+  border-left: 3px solid transparent;
+}
+
+.ceefax-league-item-row:hover {
+  background-color: var(--ceefax-blue);
+  border-left-color: var(--ceefax-yellow);
+}
+
+.ceefax-league-id-col {
+  width: 10%;
+  color: var(--ceefax-yellow);
+}
+
+.ceefax-league-country-col {
+  width: 15%;
+  color: var(--ceefax-white);
+}
+
+.ceefax-league-name-col {
+  width: 60%;
+  color: var(--ceefax-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ceefax-league-type-col {
+  width: 15%;
+  color: var(--ceefax-cyan);
+  text-align: right;
+}
+
+/* Fixture page styling */
+.ceefax-fixture-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ceefax-match-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.ceefax-fixture-teams {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--ceefax-white);
+  text-align: center;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.ceefax-fixture-score {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--ceefax-yellow);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.ceefax-fixture-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ceefax-team-section {
+  flex: 1;
+  border-left: 3px solid var(--ceefax-blue);
+  padding-left: 5px;
+}
+
+.ceefax-team-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 3px 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Player list styling */
+.ceefax-players-header {
+  display: flex;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 2px 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.ceefax-player-item {
+  display: flex;
+  padding: 2px 5px;
+  border-left: 3px solid transparent;
+}
+
+.ceefax-player-position {
+  width: 15%;
+  color: var(--ceefax-cyan);
+}
+
+.ceefax-player-name {
+  width: 80%;
+  color: var(--ceefax-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ceefax-player-points {
+  width: 20%;
+  color: var(--ceefax-yellow);
+  text-align: right;
+}
+
+.ceefax-player-total {
+  display: flex;
+  padding: 5px;
+  border-top: 1px solid var(--ceefax-blue);
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* Fixtures list page styling */
+.ceefax-fixtures-header {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.ceefax-gameweek-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ceefax-gameweek-button {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  border: none;
+  padding: 3px 8px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.ceefax-gameweek-button:disabled {
+  background-color: var(--ceefax-black);
+  color: var(--ceefax-blue);
+  cursor: not-allowed;
+}
+
+.ceefax-gameweek-display {
+  color: var(--ceefax-white);
+  font-weight: bold;
+}
+
+.ceefax-fixture-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-left: 3px solid var(--ceefax-blue);
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.ceefax-fixture-item:hover {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+}
+
+.ceefax-fixture-date {
+  color: var(--ceefax-cyan);
+  width: 20%;
+}
+
+.ceefax-fixture-teams {
+  width: 60%;
+  color: var(--ceefax-white);
+  text-align: center;
+}
+
+.ceefax-fixture-status {
+  width: 20%;
+  color: var(--ceefax-green);
+  text-align: right;
+}
+
+.ceefax-fixture-item.completed .ceefax-fixture-status {
+  color: var(--ceefax-yellow);
+}
+
+.ceefax-fixture-item.in-progress .ceefax-fixture-status {
+  color: var(--ceefax-green);
+}
+
+.ceefax-fixture-item.upcoming .ceefax-fixture-status {
+  color: var(--ceefax-cyan);
+}
+
+/* Fixtures on index page */
+.ceefax-fixtures-section {
+  margin-top: 30px;
+  border-top: 2px solid var(--ceefax-blue);
+  padding-top: 10px;
+}
+
+.ceefax-more-link {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Limit the number of fixtures shown on index page */
+.ceefax-fixtures-section .ceefax-fixture-item:nth-child(n+4) {
+  display: none;
+}
+
+/* Make fixtures more compact on index page */
+.ceefax-fixtures-section .ceefax-gameweek-nav {
+  margin-bottom: 5px;
+}
+
+.ceefax-fixtures-section .ceefax-fixture-item {
+  margin-bottom: 2px;
+  padding: 3px 5px;
+}
+
+/* ============================================================
+   Matchup Page (P308) — Head-to-Head Team View
+   ============================================================ */
+
+/* Score line at top: "TEAM A 47 V 38 TEAM B" */
+.ceefax-matchup-score-line {
+  text-align: center;
+  font-weight: bold;
+  padding: 4px 0;
+  color: var(--ceefax-yellow);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+/* Gameweek label below the score line */
+.ceefax-matchup-gw {
+  text-align: center;
+  color: var(--ceefax-cyan);
+  font-size: 0.85em;
+  margin-bottom: 8px;
+}
+
+/* Column headers: "HOME" / "AWAY" above each team column */
+.ceefax-matchup-col-header {
+  text-align: center;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 2px 0;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Section divider line between Starting XI and Not Played */
+.ceefax-section-divider {
+  border: none;
+  border-top: 1px dashed var(--ceefax-blue);
+  margin: 4px 0;
+}
+
+/* "NOT PLAYED" and "BENCH" section headers */
+.ceefax-not-played-header,
+.ceefax-bench-header {
+  color: var(--ceefax-cyan);
+  font-size: 0.8em;
+  padding: 1px 0;
+  margin-top: 4px;
+  font-weight: bold;
+}
+
+.ceefax-not-played-header {
+  color: var(--ceefax-red);
+}
+
+/* Individual player row */
+.ceefax-player-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1px 2px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background-color 0.1s;
+}
+
+.ceefax-player-row:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+/* Player status indicator dot / colour */
+.ceefax-player-row .player-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ceefax-player-row .player-name {
+  font-size: 0.82em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ceefax-player-row .player-pts {
+  font-size: 0.82em;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Status: Played (gw finished, has minutes) — white ✅ */
+.ceefax-player-status--played {
+  color: var(--ceefax-white);
+}
+
+/* Status: Playing (gw live, has minutes) — green 🔔 */
+.ceefax-player-status--playing {
+  color: var(--ceefax-green);
+}
+
+/* Status: Pending (gw live, no minutes yet) — cyan ⌛ */
+.ceefax-player-status--pending {
+  color: var(--ceefax-cyan);
+}
+
+/* Status: Did Not Play (gw finished, 0 minutes) — red */
+.ceefax-player-status--dnp {
+  color: var(--ceefax-red);
+}
+
+/* Accordion: stats row, hidden by default */
+.ceefax-player-accordion {
+  display: none;
+  padding: 2px 4px 4px 10px;
+  background-color: rgba(0,0,170,0.3);
+  font-size: 0.78em;
+  border-left: 3px solid var(--ceefax-blue);
+}
+
+.ceefax-player-accordion.open {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+/* Individual stat item inside accordion */
+.ceefax-stat {
+  color: var(--ceefax-white);
+  opacity: 0.45;
+}
+
+.ceefax-stat.nonzero {
+  color: var(--ceefax-green);
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* Sub player row (bench) — slightly dimmed */
+.ceefax-player-row.sub {
+  opacity: 0.75;
+}
+
+/* Auto-subbed-in player row — highlighted */
+.ceefax-player-row.auto-sub-in {
+  border-left-color: var(--ceefax-green);
+}
+
+/* Auto-subbed-out player row — dimmed red border */
+.ceefax-player-row.auto-sub-out {
+  border-left-color: var(--ceefax-red);
+  opacity: 0.6;
+}
+
+/* Captain label */
+.captain-label {
+  color: var(--ceefax-yellow);
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+

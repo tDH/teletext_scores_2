@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceefax FPL Draft Fixture</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button onclick="window.location.href='fixtureslist.html'" class="ceefax-back-button">BACK</button>
+
+    <div class="ceefax-container">
+        <div class="ceefax-header">
+            <div class="ceefax-page-number">P307</div>
+            <div id="ceefax-time">00:00:00</div>
+        </div>
+
+        <div class="ceefax-fixture-header">
+            <div id="ceefax-gameweek">GAMEWEEK 0</div>
+            <div id="ceefax-match-teams" class="ceefax-fixture-teams">TEAM A v TEAM B</div>
+            <div id="ceefax-match-score" class="ceefax-fixture-score">0-0</div>
+        </div>
+
+        <div class="ceefax-fixture-content">
+            <!-- Left team (Home) -->
+            <div class="ceefax-team-section">
+                <div id="home-team-header" class="ceefax-team-header">HOME TEAM</div>
+                <div id="home-team-players">
+                    <div class="ceefax-loading">LOADING PLAYERS...</div>
+                </div>
+            </div>
+
+            <!-- Right team (Away) -->
+            <div class="ceefax-team-section">
+                <div id="away-team-header" class="ceefax-team-header">AWAY TEAM</div>
+                <div id="away-team-players">
+                    <div class="ceefax-loading">LOADING PLAYERS...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item"><a href="fixtureslist.html" style="color: inherit; text-decoration: none;">FIXTURES P306</a></span>
+                <span class="ceefax-nav-item"><a href="fpl.html" style="color: inherit; text-decoration: none;">STANDINGS P305</a></span>
+                <span class="ceefax-nav-item"><a href="index.html" style="color: inherit; text-decoration: none;">HOME P100</a></span>
+            </div>
+            <div class="ceefax-update">UPDATED: 00:00</div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="fixture.js"></script>
+</body>
+</html>
