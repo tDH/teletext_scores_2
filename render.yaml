@@ -24,5 +24,5 @@ services:
 
 databases:
   - name: teletext-scores-db
-    plan: starter
+    plan: basic-256mb
     databaseName: teletext_scores_2
