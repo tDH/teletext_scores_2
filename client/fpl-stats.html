@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceefax FPL Draft Standings</title>
+    <title>Ceefax FPL Season Stats</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="ceefax-container">
         <div class="ceefax-header">
-            <div class="ceefax-page-number">P305</div>
+            <div class="ceefax-page-number">P309</div>
             <div id="ceefax-time">00:00:00</div>
         </div>
 
-        <h1 id="ceefax-league-title" class="ceefax-title">FPL DRAFT LEAGUE STANDINGS</h1>
+        <h1 class="ceefax-title">FPL SEASON STATS</h1>
 
         <div class="ceefax-content">
-            <div id="ceefax-standings" class="ceefax-draft-content">
-                <div class="ceefax-loading">LOADING STANDINGS...</div>
+            <div id="stats-container" class="ceefax-draft-content">
+                <div class="ceefax-loading">LOADING STATS...</div>
             </div>
         </div>
 
         <div class="ceefax-footer">
             <div class="ceefax-navigation">
                 <span class="ceefax-nav-item"><a href="index.html" style="color: inherit; text-decoration: none;">HOME P301</a></span>
-                <span class="ceefax-nav-item"><a href="fixtureslist.html" style="color: inherit; text-decoration: none;">FPL FIXTURES P306</a></span>
-                <span class="ceefax-nav-item"><a href="fpl-stats.html" style="color: inherit; text-decoration: none;">STATS P309</a></span>
+                <span class="ceefax-nav-item"><a href="fpl.html" style="color: inherit; text-decoration: none;">STANDINGS P305</a></span>
+                <span class="ceefax-nav-item"><a href="fixtureslist.html" style="color: inherit; text-decoration: none;">FIXTURES P306</a></span>
             </div>
             <div class="ceefax-update">UPDATED: 00:00</div>
         </div>
 
     </div>
 
-    <button onclick="window.location.href='index.html'" class="ceefax-back-button">&#9664; BACK</button>
+    <button onclick="window.location.href='fpl.html'" class="ceefax-back-button">&#9664; BACK</button>
 
     <script src="config.js"></script>
-    <script src="fpl.js"></script>
+    <script src="fpl-stats.js"></script>
 </body>
 </html>
