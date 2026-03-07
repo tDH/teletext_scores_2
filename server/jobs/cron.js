@@ -13,7 +13,6 @@
  *   Friday 3am    — weekly-start (before weekend games)
  *   Every 5 min   — frequent (live stats during match days)
  */
-require('dotenv').config();
 const cron = require('node-cron');
 const config = require('../config');
 const syncService = require('../services/sync-service');
@@ -104,5 +103,9 @@ const shutdown = async () => {
   process.exit(0);
 };
 
-process.on('SIGTERM', shutdown);
-process.on('SIGINT', shutdown);
+// Only register shutdown handlers when running standalone.
+// When imported by server.js, server.js handles SIGTERM gracefully.
+if (require.main === module) {
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
+}

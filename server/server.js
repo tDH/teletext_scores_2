@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const path = require('path');
 const config = require('./config');
 const db = require('./db');
@@ -9,6 +10,7 @@ const errorHandler = require('./middleware/error-handler');
 const app = express();
 
 // Middleware
+app.use(helmet({ contentSecurityPolicy: false })); // CSP disabled — inline scripts in HTML
 app.use(express.json());
 app.use(cors({
   origin: config.cors.origin,
@@ -18,6 +20,11 @@ app.use(cors({
 
 // Static files (Ceefax UI)
 app.use(express.static(path.join(__dirname, '../client')));
+
+// Health check — used by Render to verify the service is up
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', uptime: Math.floor(process.uptime()) });
+});
 
 // Public config endpoint — lets client JS read leagueId without hardcoding it
 app.get('/api/config', (req, res) => {
@@ -57,6 +64,11 @@ if (require.main === module) {
       process.exit(1);
     }
   });
+
+  // Start cron jobs inside this process in production (no separate Background Worker needed)
+  if (!config.isDev) {
+    require('./jobs/cron');
+  }
 
   // Graceful shutdown
   const shutdown = async () => {

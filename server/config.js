@@ -50,6 +50,10 @@ const config = {
     managerPicksTtl: 300,
     staticTtl: 3600,
   },
+
+  // Optional admin token for protecting POST sync routes.
+  // If not set, POST routes are open (development mode).
+  adminToken: process.env.ADMIN_TOKEN || null,
 };
 
 module.exports = config;

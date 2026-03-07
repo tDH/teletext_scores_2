@@ -4,14 +4,17 @@ const { Pool } = require('pg');
 // We read from process.env directly here so this file can also be used
 // by test helpers that point at a different database.
 const createPool = (overrides = {}) => {
-  return new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT || '5432', 10),
-    ...overrides,
-  });
+  const base = process.env.DATABASE_URL
+    ? { connectionString: process.env.DATABASE_URL }
+    : {
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
+        database: process.env.DB_DATABASE,
+        password: process.env.DB_PASSWORD,
+        port: parseInt(process.env.DB_PORT || '5432', 10),
+      };
+  const ssl = process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false;
+  return new Pool({ ...base, ssl, ...overrides });
 };
 
 const pool = createPool();
