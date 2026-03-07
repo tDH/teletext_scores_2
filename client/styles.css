@@ -839,7 +839,7 @@ body {
   margin-bottom: 15px;
 }
 
-.ceefax-fixture-teams {
+.ceefax-fixture-header .ceefax-fixture-teams {
   font-size: 1.2em;
   font-weight: bold;
   color: var(--ceefax-white);
@@ -1013,6 +1013,48 @@ body {
   text-align: right;
   margin-top: 10px;
   font-weight: bold;
+}
+
+/* ── FPL Season Stats (P309) ─────────────────────────────────────────────── */
+.ceefax-stat-block {
+  margin-bottom: 14px;
+}
+
+.ceefax-stat-label {
+  color: var(--ceefax-cyan);
+  font-weight: bold;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+  padding: 0 5px;
+}
+
+.ceefax-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 3px 5px;
+  border-left: 3px solid var(--ceefax-blue);
+}
+
+.ceefax-stat-name {
+  color: var(--ceefax-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.ceefax-stat-gw {
+  color: var(--ceefax-cyan);
+  font-size: 0.85em;
+}
+
+.ceefax-stat-value {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+  white-space: nowrap;
+  margin-left: 10px;
 }
 
 /* Limit the number of fixtures shown on index page */
