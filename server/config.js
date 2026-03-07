@@ -18,13 +18,16 @@ const config = {
     origin: required('CORS_ORIGIN'),
   },
 
-  db: {
-    user: required('DB_USER'),
-    host: required('DB_HOST'),
-    database: required('DB_DATABASE'),
-    password: required('DB_PASSWORD'),
-    port: parseInt(process.env.DB_PORT || '5432', 10),
-  },
+  // When DATABASE_URL is set (e.g. Render managed postgres), individual vars are not needed.
+  db: process.env.DATABASE_URL
+    ? {}
+    : {
+        user: required('DB_USER'),
+        host: required('DB_HOST'),
+        database: required('DB_DATABASE'),
+        password: required('DB_PASSWORD'),
+        port: parseInt(process.env.DB_PORT || '5432', 10),
+      },
 
   testDb: {
     user: process.env.DB_USER,
