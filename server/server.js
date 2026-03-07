@@ -58,7 +58,8 @@ if (require.main === module) {
     try {
       await db.query('SELECT 1');
       console.log(`[server] Running on port ${config.port} (${config.isDev ? 'dev' : 'production'})`);
-      console.log(`[server] DB: ${config.db.database}@${config.db.host}`);
+      const dbLabel = process.env.DATABASE_URL ? 'DATABASE_URL' : `${config.db.database}@${config.db.host}`;
+      console.log(`[server] DB: ${dbLabel}`);
     } catch (err) {
       console.error('[server] DB connection failed:', err.message);
       process.exit(1);
