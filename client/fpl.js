@@ -73,7 +73,7 @@ function renderStandings(leagueData, currentGameweek) {
     tableHeader.innerHTML = `
         <div class="ceefax-draft-pos">POS</div>
         <div class="ceefax-draft-team-name">TEAM (MANAGER)</div>
-        <div class="ceefax-draft-record">W-D-L</div>
+        <div class="ceefax-draft-record">W-D</div>
         <div class="ceefax-draft-points">PTS</div>
     `;
     standingsContainer.appendChild(tableHeader);
@@ -114,7 +114,7 @@ function renderStandings(leagueData, currentGameweek) {
             .join('');
 
         const displayName = `${teamName} (${initials || 'CPU'})`;
-        const record = `${team.matches_won}-${team.matches_drawn}-${team.matches_lost}`;
+        const record = `${team.matches_won}-${team.matches_drawn}`;
 
         teamRow.innerHTML = `
             <div class="ceefax-draft-pos">${team.rank}</div>

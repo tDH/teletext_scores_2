@@ -116,7 +116,6 @@ function displayFixtures(gameweek) {
         const fixtureEl = document.createElement('div');
         fixtureEl.className = `ceefax-fixture-item ${statusClass}`;
         fixtureEl.innerHTML = `
-            <div class="ceefax-fixture-date">${gameweek}</div>
             <div class="ceefax-fixture-teams">${homeTeamName} v ${awayTeamName}</div>
             <div class="ceefax-fixture-status">${status}</div>
         `;

@@ -95,7 +95,11 @@ body {
 }
 
 .ceefax-logo {
-  height: 40px; /* Larger size since it's now the main title */
+  height: auto;
+  max-height: 40px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Adjust header styling to accommodate the logo */
@@ -395,18 +399,20 @@ body {
 
 /* Updated back button styling */
 .ceefax-back-button {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   background-color: var(--ceefax-blue);
   color: var(--ceefax-yellow);
   border: none;
-  padding: 5px 10px;
+  padding: 8px 10px;
   cursor: pointer;
   font-family: "Courier New", monospace;
   font-weight: bold;
   text-transform: uppercase;
-  z-index: 10;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .ceefax-back-button:hover {
@@ -477,7 +483,7 @@ body {
 }
 
 .ceefax-draft-team-name {
-  width: 50%;
+  width: 62%;
   color: var(--ceefax-white);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -491,9 +497,9 @@ body {
 }
 
 .ceefax-draft-record {
-  width: 22%;
+  width: 10%;
   color: var(--ceefax-cyan);
-  text-align: center;
+  text-align: right;
   white-space: nowrap;
 }
 
