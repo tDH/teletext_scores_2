@@ -6,10 +6,10 @@ const fixturesService = require('../services/fixtures-service');
  */
 const getFixtures = async (req, res, next) => {
   try {
-    const { league, date, season } = req.query;
-    if (!league) return res.status(400).json({ message: 'league parameter required' });
+    const { league, date, season, id } = req.query;
+    if (!league && !id) return res.status(400).json({ message: 'league or id parameter required' });
 
-    const data = await fixturesService.getFixtures({ league, date, season });
+    const data = await fixturesService.getFixtures({ league, date, season, id });
     res.json(data);
   } catch (err) {
     next(err);

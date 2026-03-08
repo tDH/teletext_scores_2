@@ -62,7 +62,18 @@ const fetchWithRetry = async (url, params, cacheKey, retries = 3) => {
  * @param {{ league: string|number, date?: string, season?: string }} options
  */
 const getFixtures = (options) => {
-  const { league, date, season } = options;
+  const { league, date, season, id } = options;
+
+  // By-ID fetches include the full events array; by-league fetches do not.
+  // Use separate cache keys so they never overwrite each other.
+  if (id) {
+    return fetchWithRetry(
+      `https://${config.football.apiHost}/fixtures`,
+      { id },
+      `fixtures_id_${id}`
+    );
+  }
+
   const params = { league };
   if (date) params.date = date;
   if (season) params.season = season;

@@ -3,6 +3,9 @@
 // All fixture data now comes from /api/fixtures (server-side proxy)
 
 document.addEventListener('DOMContentLoaded', function() {
+    let refreshTimer = null;
+    let currentlyLive = false; // updated after each fetch
+
     const urlParams = new URLSearchParams(window.location.search);
     const leagueId = urlParams.get('id');
     const leagueName = urlParams.get('name');
@@ -58,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (data.response && data.response.length > 0) {
+                // Track whether any fixture is currently live for adaptive polling
+                currentlyLive = data.response.some(f => isLive(f.fixture.status.short));
                 displayFixtures(data.response);
                 fetchGoalScorers(data.response);
             } else {
@@ -110,6 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const h = fixture.goals.home !== null ? fixture.goals.home : '-';
                 const a = fixture.goals.away !== null ? fixture.goals.away : '-';
                 scoreDisplay = `${h}-${a}`;
+                // Append penalty shootout score if present (stored in score.penalty, not goals)
+                const pen = fixture.score && fixture.score.penalty;
+                if (pen && pen.home !== null && pen.away !== null) {
+                    scoreDisplay += ` (${pen.home}-${pen.away}p)`;
+                }
             }
 
             const matchElement = document.createElement('div');
@@ -262,6 +272,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return map[status] || status;
     }
 
-    fetchLeagueScores();
-    setInterval(fetchLeagueScores, 5 * 60 * 1000);
+    async function fetchAndSchedule() {
+        await fetchLeagueScores();
+        // Poll every 60s when live matches are present, every 5min otherwise
+        const interval = currentlyLive ? 60 * 1000 : 5 * 60 * 1000;
+        if (refreshTimer) clearInterval(refreshTimer);
+        refreshTimer = setInterval(fetchAndSchedule, interval);
+    }
+
+    fetchAndSchedule();
 });
