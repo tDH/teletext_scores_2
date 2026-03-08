@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Append penalty shootout score if present (stored in score.penalty, not goals)
                 const pen = fixture.score && fixture.score.penalty;
                 if (pen && pen.home !== null && pen.away !== null) {
-                    scoreDisplay += ` (${pen.home}-${pen.away}p)`;
+                    scoreDisplay += ` (${pen.home}-${pen.away})`;
                 }
             }
 
