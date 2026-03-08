@@ -31,7 +31,12 @@ const fetchWithRetry = async (url, params, cacheKey, retries = 3) => {
       });
 
       cache.set(cacheKey, response.data);
-      staleCache.set(cacheKey, { data: response.data, fetchedAt: Date.now() });
+      // Only cache non-empty responses in stale cache — avoids serving an
+      // empty result for up to 1 hour if the API hadn't published fixtures yet
+      // when the first request of the day came in.
+      if (response.data.results > 0) {
+        staleCache.set(cacheKey, { data: response.data, fetchedAt: Date.now() });
+      }
       return response.data;
     } catch (err) {
       lastError = err;
