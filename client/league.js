@@ -240,8 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let t = `${s.name} ${s.time}`;
             if (s.isPenalty) t += ' (P)';
             if (s.isOwnGoal) t += ' (OG)';
-            if (s.assist) t += ` [${s.assist}]`;
-            return `<div class="ceefax-scorer">${t}</div>`;
+            const assistLine = s.assist
+                ? `<div class="ceefax-scorer-assist">${s.assist}</div>`
+                : '';
+            return `<div class="ceefax-scorer">${t}</div>${assistLine}`;
         };
 
         scorersContainer.innerHTML = `
