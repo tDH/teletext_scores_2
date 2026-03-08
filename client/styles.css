@@ -871,6 +871,8 @@ body {
 
 .ceefax-team-section {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
   border-left: 3px solid var(--ceefax-blue);
   padding-left: 5px;
 }
@@ -1170,8 +1172,9 @@ body {
 }
 
 /* Status: Played (gw finished, has minutes) — white ✅ */
+/* Status: Played (gw finished, has minutes) — green, same as playing */
 .ceefax-player-status--played {
-  color: var(--ceefax-white);
+  color: var(--ceefax-green);
 }
 
 /* Status: Playing (gw live, has minutes) — green 🔔 */

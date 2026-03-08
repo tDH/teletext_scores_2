@@ -226,8 +226,8 @@ function buildPlayerRow(player, gwFinished) {
     if (player.is_captain)      captainMark = '<span class="captain-label">(C)</span> ';
     else if (player.is_vice_captain) captainMark = '<span class="captain-label">(V)</span> ';
 
-    // Status icon
-    const statusIcon = { pending: '', playing: ' ✅', played: ' ✅', dnp: '' }[status] || '';
+    // Status icon — tick emoji removed; played/playing shown in green via CSS instead
+    const statusIcon = '';
 
     // Injury/suspension badge — shown only when player has 0 minutes
     // i = injured → 🚑, s = suspended → 🟥, u = unavailable → 🚑
