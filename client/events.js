@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const h = fixture.goals.home !== null ? fixture.goals.home : '-';
             const a = fixture.goals.away !== null ? fixture.goals.away : '-';
             scoreDisplay = `${h}-${a}`;
+            // Append penalty shootout score if present (stored in score.penalty, not goals)
+            const pen = fixture.score && fixture.score.penalty;
+            if (pen && pen.home !== null && pen.away !== null) {
+                scoreDisplay += ` (${pen.home}-${pen.away}p)`;
+            }
         }
 
         const matchElement = document.createElement('div');
