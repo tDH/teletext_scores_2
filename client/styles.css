@@ -751,6 +751,16 @@ body {
   white-space: nowrap;
 }
 
+/* Assist shown on its own line in green, indented below the scorer */
+.ceefax-scorer-assist {
+  display: block;
+  color: var(--ceefax-green);
+  font-size: 0.85em;
+  padding-left: 8px;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+
 .ceefax-team-scorers {
   display: flex;
   flex-direction: column;

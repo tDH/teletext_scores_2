@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Append penalty shootout score if present (stored in score.penalty, not goals)
                 const pen = fixture.score && fixture.score.penalty;
                 if (pen && pen.home !== null && pen.away !== null) {
-                    scoreDisplay += ` (${pen.home}-${pen.away}p)`;
+                    scoreDisplay += ` (${pen.home}-${pen.away})`;
                 }
             }
 
@@ -240,8 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let t = `${s.name} ${s.time}`;
             if (s.isPenalty) t += ' (P)';
             if (s.isOwnGoal) t += ' (OG)';
-            if (s.assist) t += ` [${s.assist}]`;
-            return `<div class="ceefax-scorer">${t}</div>`;
+            const assistLine = s.assist
+                ? `<div class="ceefax-scorer-assist">${s.assist}</div>`
+                : '';
+            return `<div class="ceefax-scorer">${t}</div>${assistLine}`;
         };
 
         scorersContainer.innerHTML = `
