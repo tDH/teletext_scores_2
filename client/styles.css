@@ -226,6 +226,11 @@ body {
   border-left-color: var(--ceefax-yellow);
 }
 
+/* League has fixtures today — highlight name in green */
+.ceefax-league-item.ceefax-league-active .ceefax-league-name {
+  color: var(--ceefax-green);
+}
+
 .ceefax-league-name {
   color: var(--ceefax-white);
   width: 70%;

@@ -43,15 +43,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             ukLeagues.forEach(l => { leaguesWithFixtures[l.id] = false; });
 
             try {
-                const res = await fetch(`/api/fpl/game`);
+                const leagueIds = ukLeagues
+                    .filter(l => l.id !== fplLeagueId)
+                    .map(l => l.id)
+                    .join(',');
+                const res = await fetch(`/api/fixtures/today?leagues=${leagueIds}`);
                 if (res.ok) {
                     const data = await res.json();
-                    if (data && data.leagues) {
-                        leaguesWithFixtures = { ...leaguesWithFixtures, ...data.leagues };
-                    }
+                    Object.assign(leaguesWithFixtures, data);
                 }
             } catch (apiError) {
-                console.warn('Could not fetch fixture data from API, using defaults');
+                console.warn('Could not fetch fixture status, using defaults');
             }
 
             displayLeagueList(leaguesWithFixtures);
@@ -86,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 }
 
                 const hasFixtures = leaguesWithFixtures[league.id] === true;
+                if (hasFixtures) leagueItem.classList.add('ceefax-league-active');
 
                 leagueItem.innerHTML = `
                     <span class="ceefax-league-name">
