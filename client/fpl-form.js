@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <div class="ceefax-form-pos">${idx + 1}</div>
                 <div class="ceefax-form-team">${displayName}</div>
                 <div class="ceefax-form-results">${resultItems.join('')}</div>
-                <div class="ceefax-form-pts">${row.totalFplPts}</div>
+                <div class="ceefax-form-pts">${row.h2hPts}</div>
             `;
 
             formContainer.appendChild(teamEl);
