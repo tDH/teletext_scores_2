@@ -30,7 +30,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         { id: 183, name: 'League One', country: 'Scotland' },
         { id: 184, name: 'League Two', country: 'Scotland' },
         { id: 181, name: 'Scottish Cup', country: 'Scotland' },
-        { id: fplLeagueId, name: 'FPL Draft League', country: 'Fantasy Football' }
+        { id: fplLeagueId,    name: 'League Standings', country: 'Fantasy Football', href: 'fpl.html',          page: 'P305' },
+        { id: 'fpl-fixtures', name: 'Fixtures',         country: 'Fantasy Football', href: 'fixtureslist.html', page: 'P306' },
+        { id: 'fpl-stats',    name: 'Stats',            country: 'Fantasy Football', href: 'fpl-stats.html',    page: 'P309' },
+        { id: 'fpl-form',     name: 'Form',             country: 'Fantasy Football', href: 'fpl-form.html',     page: 'P310' },
     ];
 
     async function checkTodaysFixtures() {
@@ -44,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             try {
                 const leagueIds = ukLeagues
-                    .filter(l => l.id !== fplLeagueId)
+                    .filter(l => !l.href)
                     .map(l => l.id)
                     .join(',');
                 const res = await fetch(`/api/fixtures/today?leagues=${leagueIds}`);
@@ -82,10 +85,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const leagueItem = document.createElement('div');
                 leagueItem.className = 'ceefax-league-item';
 
-                let pageNum = `P${300 + ukLeagues.indexOf(league) + 10}`;
-                if (league.id === fplLeagueId) {
-                    pageNum = 'P305';
-                }
+                const pageNum = league.page || `P${300 + ukLeagues.indexOf(league) + 10}`;
 
                 const hasFixtures = leaguesWithFixtures[league.id] === true;
                 if (hasFixtures) leagueItem.classList.add('ceefax-league-active');
@@ -99,11 +99,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 `;
 
                 leagueItem.addEventListener('click', function() {
-                    if (league.id === fplLeagueId) {
-                        window.location.href = 'fpl.html';
-                    } else {
-                        window.location.href = `league.html?id=${league.id}&name=${encodeURIComponent(league.name)}`;
-                    }
+                    window.location.href = league.href
+                        ? league.href
+                        : `league.html?id=${league.id}&name=${encodeURIComponent(league.name)}`;
                 });
 
                 leagueListContainer.appendChild(leagueItem);

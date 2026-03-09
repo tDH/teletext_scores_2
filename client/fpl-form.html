@@ -3,27 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceefax FPL Draft Fixtures</title>
+    <title>Ceefax FPL Form Guide</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="ceefax-container">
         <div class="ceefax-header">
-            <div class="ceefax-page-number">P306</div>
+            <div class="ceefax-page-number">P310</div>
             <div id="ceefax-time">00:00:00</div>
         </div>
 
-        <h1 id="league-title" class="ceefax-title">FPL DRAFT LEAGUE FIXTURES</h1>
+        <h1 class="ceefax-title">FPL FORM GUIDE</h1>
 
         <div class="ceefax-content">
-            <div class="ceefax-gameweek-nav">
-                <button id="prev-gameweek-button" class="ceefax-gameweek-button">&lt; PREV</button>
-                <div id="current-gameweek" class="ceefax-gameweek-display">GAMEWEEK 1</div>
-                <button id="next-gameweek-button" class="ceefax-gameweek-button">NEXT &gt;</button>
-            </div>
-
-            <div id="fixtures-container" class="ceefax-fixtures-content">
-                <div class="ceefax-loading">LOADING FIXTURES...</div>
+            <div id="form-container" class="ceefax-draft-content">
+                <div class="ceefax-loading">LOADING FORM...</div>
             </div>
         </div>
 
@@ -31,7 +25,8 @@
             <div class="ceefax-navigation">
                 <span class="ceefax-nav-item"><a href="index.html" style="color: inherit; text-decoration: none;">HOME P301</a></span>
                 <span class="ceefax-nav-item"><a href="fpl.html" style="color: inherit; text-decoration: none;">STANDINGS P305</a></span>
-                <span class="ceefax-nav-item"><a href="fpl-form.html" style="color: inherit; text-decoration: none;">FORM P310</a></span>
+                <span class="ceefax-nav-item"><a href="fixtureslist.html" style="color: inherit; text-decoration: none;">FIXTURES P306</a></span>
+                <span class="ceefax-nav-item"><a href="fpl-stats.html" style="color: inherit; text-decoration: none;">STATS P309</a></span>
             </div>
             <div class="ceefax-update">UPDATED: 00:00</div>
         </div>
@@ -41,6 +36,6 @@
     <button onclick="window.location.href='fpl.html'" class="ceefax-back-button">&#9664; BACK</button>
 
     <script src="config.js"></script>
-    <script src="fixtureslist.js"></script>
+    <script src="fpl-form.js"></script>
 </body>
 </html>
