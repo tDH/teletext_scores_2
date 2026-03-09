@@ -1111,14 +1111,21 @@ body {
   margin-bottom: 8px;
 }
 
-/* Column headers: "HOME" / "AWAY" above each team column */
+/* Column headers: team names above each player list.
+   Always reserve 2 lines of height so both columns stay vertically aligned
+   regardless of whether one team name wraps and the other doesn't. */
 .ceefax-matchup-col-header {
-  text-align: center;
   background-color: var(--ceefax-blue);
   color: var(--ceefax-cyan);
-  padding: 2px 0;
+  padding: 2px 4px;
   font-weight: bold;
   margin-bottom: 4px;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  word-break: break-word;
 }
 
 /* Section divider line between Starting XI and Not Played */
@@ -1250,6 +1257,84 @@ body {
   color: var(--ceefax-yellow);
   font-size: 0.75em;
   font-weight: bold;
+}
+
+/* Missed penalty scorer — red text */
+.ceefax-scorer--missed-pen {
+  color: var(--ceefax-red);
+}
+
+/* Missed penalty event in events page */
+.ceefax-event-item.missed-penalty .ceefax-event-description {
+  color: var(--ceefax-red);
+}
+
+/* ============================================================
+   Form Page (P310) — Last 5 Matches Form
+   ============================================================ */
+.ceefax-form-table-header {
+  display: flex;
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-cyan);
+  padding: 2px 5px;
+  margin: 8px 0 3px 0;
+  font-weight: bold;
+}
+
+.ceefax-form-row {
+  display: flex;
+  align-items: center;
+  padding: 3px 5px;
+  border-left: 3px solid transparent;
+}
+
+.ceefax-form-row:hover {
+  background-color: var(--ceefax-blue);
+}
+
+.ceefax-form-pos {
+  width: 6%;
+  text-align: center;
+  color: var(--ceefax-white);
+  flex-shrink: 0;
+}
+
+.ceefax-form-team {
+  flex: 1;
+  color: var(--ceefax-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ceefax-form-results {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  width: 38%;
+  flex-shrink: 0;
+}
+
+.ceefax-form-result {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.ceefax-form-result--w { color: var(--ceefax-green); }
+.ceefax-form-result--d { color: var(--ceefax-yellow); }
+.ceefax-form-result--l { color: var(--ceefax-red); }
+
+.ceefax-form-sep {
+  color: var(--ceefax-blue);
+  font-size: 0.8em;
+}
+
+.ceefax-form-pts {
+  width: 10%;
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+  text-align: right;
+  flex-shrink: 0;
 }
 
 

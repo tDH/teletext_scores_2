@@ -223,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 time: `${minute}'${extra}`,
                 isOwnGoal: goalType === 'Own Goal',
                 isPenalty: goalType === 'Penalty',
+                isMissedPenalty: goalType === 'Missed Penalty',
                 assist: event.assist && event.assist.name
                     ? event.assist.name.split(' ').pop().toUpperCase()
                     : null
@@ -239,11 +240,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const formatScorer = (s) => {
             let t = `${s.name} ${s.time}`;
             if (s.isPenalty) t += ' (P)';
+            if (s.isMissedPenalty) t += ' (P)';
             if (s.isOwnGoal) t += ' (OG)';
+            const cls = s.isMissedPenalty ? 'ceefax-scorer ceefax-scorer--missed-pen' : 'ceefax-scorer';
             const assistLine = s.assist
                 ? `<div class="ceefax-scorer-assist">${s.assist}</div>`
                 : '';
-            return `<div class="ceefax-scorer">${t}</div>${assistLine}`;
+            return `<div class="${cls}">${t}</div>${assistLine}`;
         };
 
         scorersContainer.innerHTML = `

@@ -159,6 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 desc = scorer;
                 if (event.detail === 'Penalty') desc += ' (Penalty)';
                 else if (event.detail === 'Own Goal') desc += ' (Own Goal)';
+                else if (event.detail === 'Missed Penalty') {
+                    desc += ' (P) - MISSED';
+                    item.classList.add('missed-penalty');
+                }
                 if (event.assist && event.assist.name) {
                     desc += ` (assist: ${event.assist.name.split(' ').pop().toUpperCase()})`;
                 }
