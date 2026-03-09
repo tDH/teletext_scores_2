@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         { id: 183, name: 'League One', country: 'Scotland' },
         { id: 184, name: 'League Two', country: 'Scotland' },
         { id: 181, name: 'Scottish Cup', country: 'Scotland' },
-        { id: fplLeagueId,    name: 'League Standings', country: 'Fantasy Football', href: 'fpl.html',          page: 'P305' },
-        { id: 'fpl-fixtures', name: 'Fixtures',         country: 'Fantasy Football', href: 'fixtureslist.html', page: 'P306' },
-        { id: 'fpl-stats',    name: 'Stats',            country: 'Fantasy Football', href: 'fpl-stats.html',    page: 'P309' },
-        { id: 'fpl-form',     name: 'Form',             country: 'Fantasy Football', href: 'fpl-form.html',     page: 'P310' },
+        { id: fplLeagueId,    name: 'League Standings', country: 'Fantasy Football', href: 'fpl.html',          page: 'P401' },
+        { id: 'fpl-fixtures', name: 'Fixtures',         country: 'Fantasy Football', href: 'fixtureslist.html', page: 'P402' },
+        { id: 'fpl-stats',    name: 'Stats',            country: 'Fantasy Football', href: 'fpl-stats.html',    page: 'P403' },
+        { id: 'fpl-form',     name: 'Form',             country: 'Fantasy Football', href: 'fpl-form.html',     page: 'P404' },
     ];
 
     async function checkTodaysFixtures() {
