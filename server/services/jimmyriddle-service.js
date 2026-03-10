@@ -24,16 +24,20 @@ const generatePlayer = async () => {
 
   const prompt = `You are generating a mystery football player profile for a guessing game called Jimmyriddle.
 
-The player must have represented their country at international level. Choose a mix of medium and hard difficulty — some well-known internationals, some less obvious ones. Players can come from any nation and era (European leagues preferred but not required). Do not always pick the most famous players.
+Rules:
+- The player MUST be English, Scottish, Welsh, Northern Irish, or Irish (Republic of Ireland).
+- The player MUST have earned at least 1 full international cap for their nation.
+- Difficulty: hard to very hard. Avoid household names. Pick players that only a knowledgeable football fan would recognise — solid internationals, cult heroes, one-cap wonders, journeymen with interesting careers. Do NOT pick players like Wayne Rooney, Steven Gerrard, or Thierry Henry.
+- The "famousMoment" field MUST NOT contain the player's name (first name, surname, or any part of it). Describe the moment without naming the subject — e.g. "Scored the only goal in a famous European Cup upset" not "John Smith scored the only goal...".
 
 Return ONLY a raw JSON object with exactly these 7 fields:
 - "playerName": string (full name)
-- "nationality": string (e.g. "Scottish", "French", "Brazilian")
+- "nationality": string (e.g. "Scottish", "Welsh", "Irish")
 - "teams": array of strings (clubs played for, in chronological order)
-- "trophies": array of strings (major honours — league titles, cups, international trophies)
-- "goals": string (e.g. "187 career club goals" or "23 international goals")
+- "trophies": array of strings (major honours — league titles, cups, international trophies; empty array if none)
+- "goals": string (e.g. "187 career club goals" or "12 international goals")
 - "era": string (e.g. "1998 – 2014")
-- "famousMoment": string (one memorable career highlight, match, or achievement — one sentence)
+- "famousMoment": string (one memorable career highlight, match, or achievement — one sentence, player's name must NOT appear)
 
 No markdown code blocks, no explanation, no other text. Only the raw JSON object.`;
 
@@ -92,6 +96,17 @@ No markdown code blocks, no explanation, no other text. Only the raw JSON object
       throw new Error(`LLM response: ${field} must be a non-empty string`);
     }
   }
+
+  // Safety net: redact any part of the player's name that leaked into famousMoment
+  const nameParts = player.playerName.trim().split(/\s+/);
+  let moment = player.famousMoment;
+  for (const part of nameParts) {
+    if (part.length > 1) {
+      const pattern = new RegExp(part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      moment = moment.replace(pattern, '***');
+    }
+  }
+  player.famousMoment = moment;
 
   return player;
 };
