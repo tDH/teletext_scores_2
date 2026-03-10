@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function showScreen(name) {
         Object.values(screens).forEach(s => { s.style.display = 'none'; });
         if (screens[name]) screens[name].style.display = 'block';
-        window.scrollTo(0, 0);
     }
 
     // ── Setup ──────────────────────────────────────────────────────────
