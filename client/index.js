@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         { id: 'fpl-form',     name: 'Form',             country: 'Fantasy Football', href: 'fpl-form.html',          page: 'P404' },
         { id: 'tamboozle',    name: 'Tamboozle',         country: 'Trivia',           href: 'tamboozle.html',             page: 'P501' },
         { id: 'tamboozle-lb', name: 'Leaderboard',      country: 'Trivia',           href: 'tamboozle-leaderboard.html', page: 'P502' },
+        { id: 'jimmyriddle',  name: 'Jimmyriddle',       country: 'Trivia',           href: 'jimmyriddle.html',           page: 'P503' },
     ];
 
     async function checkTodaysFixtures() {

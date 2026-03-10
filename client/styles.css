@@ -1691,4 +1691,42 @@ body {
   color: var(--ceefax-black);
 }
 
+/* ── Jimmyriddle ──────────────────────────────────────────────────── */
+.jimmyriddle-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin: 1em 0;
+}
+
+.jimmyriddle-stat-label {
+  color: var(--ceefax-cyan);
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-bottom: 0.15em;
+  letter-spacing: 0.05em;
+}
+
+.jimmyriddle-stat-value {
+  color: var(--ceefax-white);
+  font-size: 0.95em;
+}
+
+.jimmyriddle-who-box {
+  text-align: center;
+  padding: 0.5em;
+  border: 1px solid var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0.8em 0;
+  letter-spacing: 0.08em;
+}
+
+.jimmyriddle-who-box.jimmyriddle-revealed {
+  color: var(--ceefax-green);
+  border-color: var(--ceefax-green);
+  font-size: 1.3em;
+}
+
 

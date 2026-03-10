@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jimmyriddle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ceefax-container">
+        <div class="ceefax-header">
+            <div class="ceefax-page-number">P503</div>
+            <div id="ceefax-time">00:00:00</div>
+        </div>
+
+        <h1 class="ceefax-tamboozle-title">JIMMYRIDDLE</h1>
+
+        <div class="ceefax-content">
+
+            <!-- ── Loading screen ──────────────────────────────────────── -->
+            <div id="loading-screen" class="ceefax-quiz-screen">
+                <div class="ceefax-loading">JIMMYRIDDLE IS THINKING...</div>
+            </div>
+
+            <!-- ── Riddle screen ───────────────────────────────────────── -->
+            <div id="riddle-screen" class="ceefax-quiz-screen" style="display:none;">
+                <div class="ceefax-quiz-meta">
+                    <span id="jr-timer-display" class="ceefax-quiz-timer-display">3:00</span>
+                </div>
+                <div class="ceefax-quiz-timer-bar">
+                    <div id="jr-timer-fill" class="ceefax-quiz-timer-fill"></div>
+                </div>
+
+                <div class="jimmyriddle-stats">
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">NATIONALITY</div>
+                        <div id="jr-nationality" class="jimmyriddle-stat-value"></div>
+                    </div>
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">CLUBS</div>
+                        <div id="jr-teams" class="jimmyriddle-stat-value"></div>
+                    </div>
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">TROPHIES</div>
+                        <div id="jr-trophies" class="jimmyriddle-stat-value"></div>
+                    </div>
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">GOALS</div>
+                        <div id="jr-goals" class="jimmyriddle-stat-value"></div>
+                    </div>
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">ERA</div>
+                        <div id="jr-era" class="jimmyriddle-stat-value"></div>
+                    </div>
+                    <div class="jimmyriddle-stat-block">
+                        <div class="jimmyriddle-stat-label">FAMOUS MOMENT</div>
+                        <div id="jr-moment" class="jimmyriddle-stat-value"></div>
+                    </div>
+                </div>
+
+                <div id="jr-who-box" class="jimmyriddle-who-box">WHO AM I?</div>
+                <button id="jr-reveal-btn" class="ceefax-quiz-start-btn">REVEAL &#9654;</button>
+            </div>
+
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item"><a href="index.html" style="color:inherit;text-decoration:none;">HOME P301</a></span>
+            </div>
+            <div class="ceefax-update">UPDATED: 00:00</div>
+        </div>
+    </div>
+
+    <button onclick="window.location.href='index.html'" class="ceefax-back-button">&#9664; BACK</button>
+
+    <script src="config.js"></script>
+    <script src="jimmyriddle.js"></script>
+</body>
+</html>
