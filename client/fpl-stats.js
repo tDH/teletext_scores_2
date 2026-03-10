@@ -69,6 +69,10 @@ function computeStats(matches, managerMap) {
     let longestWin  = { name: '—', length: 0 };
     let longestLoss = { name: '—', length: 0 };
 
+    // Active streak entries: { name, length } for each manager
+    const activeWinEntries  = [];
+    const activeLossEntries = [];
+
     allManagerIds.forEach(managerId => {
         const myMatches = finished
             .filter(m => m.league_entry_1 === managerId || m.league_entry_2 === managerId)
@@ -93,61 +97,66 @@ function computeStats(matches, managerMap) {
         const name = managerMap[managerId] || '—';
         if (maxWin  > longestWin.length)  longestWin  = { name, length: maxWin };
         if (maxLoss > longestLoss.length) longestLoss = { name, length: maxLoss };
+
+        // Active streak — count consecutive same result from the most recent match backwards
+        let activeWin = 0, activeLoss = 0;
+        for (let i = myMatches.length - 1; i >= 0; i--) {
+            const m = myMatches[i];
+            const myPts  = m.league_entry_1 === managerId ? m.league_entry_1_points : m.league_entry_2_points;
+            const oppPts = m.league_entry_1 === managerId ? m.league_entry_2_points : m.league_entry_1_points;
+            if (myPts > oppPts) {
+                if (activeLoss > 0) break;
+                activeWin++;
+            } else if (myPts < oppPts) {
+                if (activeWin > 0) break;
+                activeLoss++;
+            } else {
+                break; // draw ends streak
+            }
+        }
+        if (activeWin  > 0) activeWinEntries.push({ name, length: activeWin });
+        if (activeLoss > 0) activeLossEntries.push({ name, length: activeLoss });
     });
 
-    return { highScore, lowScore, bigMargin, longestWin, longestLoss };
+    // Keep only teams sharing the longest active streak
+    const maxActiveWin  = activeWinEntries.reduce((m, e) => Math.max(m, e.length), 0);
+    const maxActiveLoss = activeLossEntries.reduce((m, e) => Math.max(m, e.length), 0);
+    const activeWinStreak  = activeWinEntries.filter(e => e.length === maxActiveWin);
+    const activeLossStreak = activeLossEntries.filter(e => e.length === maxActiveLoss);
+
+    return { highScore, lowScore, bigMargin, longestWin, longestLoss, activeWinStreak, activeLossStreak };
+}
+
+function renderStatBlock(label, rows) {
+    const rowsHtml = rows.map(row => `
+        <div class="ceefax-stat-row ${row.colour || ''}">
+            <div class="ceefax-stat-name">${row.detail}${row.sub ? `<span class="ceefax-stat-gw"> ${row.sub}</span>` : ''}</div>
+            <div class="ceefax-stat-value">${row.value}</div>
+        </div>
+    `).join('');
+    return `<div class="ceefax-stat-block"><div class="ceefax-stat-label">${label}</div>${rowsHtml}</div>`;
 }
 
 function renderStats(stats) {
     const container = document.getElementById('stats-container');
 
-    const statRows = [
-        {
-            label: 'HIGHEST SCORE',
-            detail: `${stats.highScore.name}`,
-            sub: `GW ${stats.highScore.gw}`,
-            value: `${stats.highScore.points} PTS`,
-            colour: 'ceefax-standing-promotion'
-        },
-        {
-            label: 'LOWEST SCORE',
-            detail: `${stats.lowScore.name}`,
-            sub: `GW ${stats.lowScore.gw}`,
-            value: `${stats.lowScore.points} PTS`,
-            colour: 'ceefax-standing-relegation'
-        },
-        {
-            label: 'BIGGEST WIN MARGIN',
-            detail: `${stats.bigMargin.name}`,
-            sub: `GW ${stats.bigMargin.gw}`,
-            value: `+${stats.bigMargin.margin} PTS`,
-            colour: ''
-        },
-        {
-            label: 'LONGEST WIN STREAK',
-            detail: `${stats.longestWin.name}`,
-            sub: '',
-            value: `${stats.longestWin.length} WINS`,
-            colour: ''
-        },
-        {
-            label: 'LONGEST LOSING STREAK',
-            detail: `${stats.longestLoss.name}`,
-            sub: '',
-            value: `${stats.longestLoss.length} LOSSES`,
-            colour: ''
-        }
-    ];
+    const activeWinRows = stats.activeWinStreak.length
+        ? stats.activeWinStreak.map(e => ({ detail: e.name, sub: '', value: `${e.length} WINS`, colour: 'ceefax-standing-promotion' }))
+        : [{ detail: '—', sub: '', value: '0 WINS', colour: '' }];
 
-    container.innerHTML = statRows.map(row => `
-        <div class="ceefax-stat-block">
-            <div class="ceefax-stat-label">${row.label}</div>
-            <div class="ceefax-stat-row ${row.colour}">
-                <div class="ceefax-stat-name">${row.detail}${row.sub ? `<span class="ceefax-stat-gw"> ${row.sub}</span>` : ''}</div>
-                <div class="ceefax-stat-value">${row.value}</div>
-            </div>
-        </div>
-    `).join('');
+    const activeLossRows = stats.activeLossStreak.length
+        ? stats.activeLossStreak.map(e => ({ detail: e.name, sub: '', value: `${e.length} LOSSES`, colour: 'ceefax-standing-relegation' }))
+        : [{ detail: '—', sub: '', value: '0 LOSSES', colour: '' }];
+
+    container.innerHTML = [
+        renderStatBlock('HIGHEST SCORE', [{ detail: stats.highScore.name, sub: `GW ${stats.highScore.gw}`, value: `${stats.highScore.points} PTS`, colour: 'ceefax-standing-promotion' }]),
+        renderStatBlock('LOWEST SCORE',  [{ detail: stats.lowScore.name,  sub: `GW ${stats.lowScore.gw}`,  value: `${stats.lowScore.points} PTS`,  colour: 'ceefax-standing-relegation' }]),
+        renderStatBlock('BIGGEST WIN MARGIN', [{ detail: stats.bigMargin.name, sub: `GW ${stats.bigMargin.gw}`, value: `+${stats.bigMargin.margin} PTS`, colour: '' }]),
+        renderStatBlock('LONGEST WIN STREAK',    [{ detail: stats.longestWin.name,  sub: '', value: `${stats.longestWin.length} WINS`,    colour: '' }]),
+        renderStatBlock('LONGEST LOSING STREAK', [{ detail: stats.longestLoss.name, sub: '', value: `${stats.longestLoss.length} LOSSES`, colour: '' }]),
+        renderStatBlock('ACTIVE WIN STREAK',    activeWinRows),
+        renderStatBlock('ACTIVE LOSING STREAK', activeLossRows),
+    ].join('');
 }
 
 async function init() {
