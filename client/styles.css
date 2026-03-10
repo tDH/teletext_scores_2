@@ -1337,4 +1337,355 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Quiz page (P405) ────────────────────────────────────────────────── */
+
+.ceefax-quiz-screen {
+  width: 100%;
+}
+
+/* Setup form */
+.ceefax-quiz-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin-top: 0.5em;
+}
+
+.ceefax-quiz-field {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+}
+
+.ceefax-quiz-label {
+  color: var(--ceefax-cyan);
+  min-width: 12ch;
+  flex-shrink: 0;
+}
+
+.ceefax-quiz-input,
+.ceefax-quiz-select {
+  background-color: var(--ceefax-black);
+  color: var(--ceefax-white);
+  font-family: "Courier New", monospace;
+  font-size: 1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ceefax-blue);
+  padding: 2px 6px;
+  flex: 1;
+}
+
+.ceefax-quiz-input:focus,
+.ceefax-quiz-select:focus {
+  outline: 1px solid var(--ceefax-cyan);
+}
+
+.ceefax-quiz-start-btn {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  font-family: "Courier New", monospace;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  padding: 0.4em 1em;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 0.5em;
+}
+
+.ceefax-quiz-start-btn:hover {
+  background-color: var(--ceefax-cyan);
+  color: var(--ceefax-black);
+}
+
+.ceefax-quiz-error {
+  color: var(--ceefax-red);
+  margin-top: 0.3em;
+}
+
+/* Quiz question */
+.ceefax-quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4em;
+}
+
+.ceefax-quiz-counter {
+  color: var(--ceefax-cyan);
+  font-weight: bold;
+}
+
+.ceefax-quiz-timer-display {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+  min-width: 4ch;
+  text-align: right;
+}
+
+.ceefax-quiz-timer-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--ceefax-blue);
+  margin-bottom: 0.8em;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ceefax-quiz-timer-fill {
+  height: 100%;
+  width: 100%;
+  background-color: var(--ceefax-green);
+  transition: width 1s linear, background-color 0.5s;
+}
+
+.ceefax-quiz-question {
+  color: var(--ceefax-white);
+  font-size: 1.05em;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  min-height: 2.5em;
+}
+
+.ceefax-quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.ceefax-quiz-option {
+  background-color: var(--ceefax-black);
+  color: var(--ceefax-white);
+  font-family: "Courier New", monospace;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  text-align: left;
+  border: 1px solid var(--ceefax-blue);
+  padding: 0.35em 0.7em;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.15s;
+}
+
+.ceefax-quiz-option:hover:not(:disabled) {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-white);
+}
+
+.ceefax-quiz-option:disabled {
+  cursor: default;
+}
+
+.ceefax-quiz-option.correct {
+  background-color: var(--ceefax-green);
+  color: var(--ceefax-black);
+  border-color: var(--ceefax-green);
+}
+
+.ceefax-quiz-option.wrong {
+  background-color: var(--ceefax-red);
+  color: var(--ceefax-white);
+  border-color: var(--ceefax-red);
+}
+
+/* Results */
+.ceefax-quiz-results-summary {
+  margin-bottom: 1em;
+}
+
+.ceefax-quiz-score-line {
+  display: flex;
+  gap: 2em;
+  margin-bottom: 0.3em;
+}
+
+.ceefax-quiz-final-score {
+  color: var(--ceefax-yellow);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.ceefax-quiz-final-time {
+  color: var(--ceefax-cyan);
+  font-size: 1.2em;
+}
+
+.ceefax-quiz-params {
+  color: var(--ceefax-white);
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.ceefax-quiz-leaderboard-title {
+  color: var(--ceefax-cyan);
+  font-weight: bold;
+  border-bottom: 1px solid var(--ceefax-blue);
+  margin-bottom: 0.4em;
+  padding-bottom: 0.2em;
+}
+
+/* Leaderboard rows */
+.ceefax-quiz-lb-row {
+  display: flex;
+  gap: 0.5em;
+  padding: 2px 0;
+  font-size: 0.88em;
+}
+
+.ceefax-quiz-lb-header {
+  color: var(--ceefax-cyan);
+  border-bottom: 1px solid var(--ceefax-blue);
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+}
+
+.ceefax-quiz-lb-mine {
+  color: var(--ceefax-yellow);
+  font-weight: bold;
+}
+
+.ceefax-quiz-lb-rank  { min-width: 2.5ch; text-align: right; color: var(--ceefax-white); flex-shrink: 0; }
+.ceefax-quiz-lb-name  { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ceefax-quiz-lb-meta  { min-width: 18ch; flex-shrink: 0; color: var(--ceefax-white); font-size: 0.85em; }
+.ceefax-quiz-lb-score { min-width: 4ch; text-align: right; flex-shrink: 0; color: var(--ceefax-green); font-weight: bold; }
+.ceefax-quiz-lb-time  { min-width: 6ch; text-align: right; flex-shrink: 0; color: var(--ceefax-cyan); margin-left: auto; }
+
+/* ── Tamboozle branding & layout ─────────────────────────────────────── */
+
+/* Big bold Tamboozle title — replaces .ceefax-title on Tamboozle pages */
+.ceefax-tamboozle-title {
+  color: var(--ceefax-yellow);
+  text-align: center;
+  font-size: 2.4em;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  margin: 6px 0 2px;
+  text-shadow: 2px 2px 0 var(--ceefax-blue);
+}
+
+/* Subtitle (e.g. "LEADERBOARD" on P502) */
+.ceefax-subtitle {
+  color: var(--ceefax-cyan);
+  text-align: center;
+  font-size: 1em;
+  margin: 0 0 8px;
+  font-weight: normal;
+}
+
+/* Setup screen: form left, face image right */
+.tamboozle-setup-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2em;
+}
+
+.tamboozle-setup-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Centre the START button under the form fields */
+.tamboozle-setup-form .ceefax-quiz-start-btn {
+  align-self: center;
+  margin-top: 0.8em;
+}
+
+/* Shrink the setup form fields to half size */
+.tamboozle-setup-form .ceefax-quiz-field {
+  font-size: 0.8em;
+  margin-bottom: 0.4em;
+}
+
+.tamboozle-setup-form .ceefax-quiz-label {
+  min-width: 9ch;
+}
+
+.tamboozle-setup-form .ceefax-quiz-input,
+.tamboozle-setup-form .ceefax-quiz-select {
+  padding: 1px 4px;
+  font-size: 0.9em;
+}
+
+/* Tamboozle face image */
+.tamboozle-face-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tamboozle-face-img {
+  width: 160px;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background-color: var(--ceefax-black);
+}
+
+/* Answer area — red divider lines */
+.tamboozle-answer-divider {
+  border-top: 2px solid var(--ceefax-red);
+  margin: 0.5em 0;
+}
+
+/* "Press the colour of your choice" prompt box */
+.tamboozle-press-box {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-yellow);
+  text-align: center;
+  padding: 0.25em 0.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 0.3em;
+}
+
+/* Coloured square shown to the left of each answer */
+.tamboozle-colour-sq {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.55em;
+  vertical-align: middle;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.tamboozle-colour-sq--red    { background-color: var(--ceefax-red); }
+.tamboozle-colour-sq--green  { background-color: var(--ceefax-green); }
+.tamboozle-colour-sq--yellow { background-color: var(--ceefax-yellow); }
+.tamboozle-colour-sq--cyan   { background-color: var(--ceefax-cyan); }
+
+/* Leaderboard tab toggle buttons */
+.tamboozle-lb-tabs {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 0.6em;
+  justify-content: center;
+}
+
+.tamboozle-lb-tab {
+  background-color: var(--ceefax-blue);
+  color: var(--ceefax-white);
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid var(--ceefax-white);
+  padding: 0.2em 0.8em;
+  cursor: pointer;
+}
+
+.tamboozle-lb-tab.active {
+  background-color: var(--ceefax-yellow);
+  color: var(--ceefax-black);
+  border-color: var(--ceefax-yellow);
+}
+
+.tamboozle-lb-tab:hover:not(.active) {
+  background-color: var(--ceefax-cyan);
+  color: var(--ceefax-black);
+}
+
 

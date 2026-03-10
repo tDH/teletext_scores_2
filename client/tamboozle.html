@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamboozle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ceefax-container">
+        <div class="ceefax-header">
+            <div class="ceefax-page-number">P501</div>
+            <div id="ceefax-time">00:00:00</div>
+        </div>
+
+        <h1 class="ceefax-tamboozle-title">TAMBOOZLE</h1>
+
+        <div class="ceefax-content">
+
+            <!-- ── Setup screen ─────────────────────────────────────────── -->
+            <div id="setup-screen" class="ceefax-quiz-screen">
+                <div class="tamboozle-setup-wrapper">
+                    <div class="tamboozle-setup-form">
+                        <div class="ceefax-quiz-field">
+                            <label class="ceefax-quiz-label">INITIALS</label>
+                            <input id="quiz-name" type="text" class="ceefax-quiz-input"
+                                   maxlength="3" placeholder="ABC" autocomplete="off">
+                        </div>
+                        <div class="ceefax-quiz-field">
+                            <label class="ceefax-quiz-label">LEAGUE</label>
+                            <select id="quiz-league" class="ceefax-quiz-select">
+                                <option value="england">ENGLISH PREMIER LEAGUE</option>
+                                <option value="scotland">SCOTTISH PREMIER LEAGUE</option>
+                            </select>
+                        </div>
+                        <div class="ceefax-quiz-field">
+                            <label class="ceefax-quiz-label">DECADE</label>
+                            <select id="quiz-decade" class="ceefax-quiz-select">
+                                <option value="1990s">1990s</option>
+                                <option value="2000s">2000s</option>
+                                <option value="2010s">2010s</option>
+                                <option value="2020s" selected>2020s</option>
+                            </select>
+                        </div>
+                        <button id="quiz-start-btn" class="ceefax-quiz-start-btn">START &#9654;</button>
+                        <div id="setup-error" class="ceefax-quiz-error" style="display:none;"></div>
+                    </div>
+                    <div class="tamboozle-face-wrap">
+                        <img src="utils/img/boozle.PNG" alt="Tamboozle" class="tamboozle-face-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Loading screen ─────────────────────────────────────────── -->
+            <div id="loading-screen" class="ceefax-quiz-screen" style="display:none;">
+                <div class="ceefax-loading">TAMBOOZLE IS THINKING...</div>
+            </div>
+
+            <!-- ── Quiz screen ───────────────────────────────────────────── -->
+            <div id="quiz-screen" class="ceefax-quiz-screen" style="display:none;">
+                <div class="ceefax-quiz-meta">
+                    <span id="quiz-question-counter" class="ceefax-quiz-counter">Q1 OF 5</span>
+                    <span id="quiz-timer-display" class="ceefax-quiz-timer-display">30s</span>
+                </div>
+                <div class="ceefax-quiz-timer-bar">
+                    <div id="quiz-timer-fill" class="ceefax-quiz-timer-fill"></div>
+                </div>
+                <div id="quiz-question-text" class="ceefax-quiz-question"></div>
+
+                <div class="tamboozle-press-box">PRESS THE COLOUR OF YOUR CHOICE</div>
+                <div class="tamboozle-answer-divider"></div>
+                <div id="quiz-options" class="ceefax-quiz-options"></div>
+                <div class="tamboozle-answer-divider"></div>
+            </div>
+
+            <!-- ── Results screen ────────────────────────────────────────── -->
+            <div id="results-screen" class="ceefax-quiz-screen" style="display:none;">
+                <div class="ceefax-quiz-results-summary">
+                    <div class="ceefax-quiz-score-line">
+                        <span id="results-score" class="ceefax-quiz-final-score"></span>
+                        <span id="results-time" class="ceefax-quiz-final-time"></span>
+                    </div>
+                    <div id="results-params" class="ceefax-quiz-params"></div>
+                </div>
+                <div class="ceefax-quiz-leaderboard-title">TAMBOOZLE LEADERBOARD</div>
+                <div class="tamboozle-lb-tabs">
+                    <button class="tamboozle-lb-tab active" data-league="scotland">SCOTLAND</button>
+                    <button class="tamboozle-lb-tab" data-league="england">ENGLAND</button>
+                </div>
+                <div id="leaderboard-container"></div>
+                <button id="quiz-again-btn" class="ceefax-quiz-start-btn" style="margin-top:1em;">PLAY AGAIN &#9654;</button>
+            </div>
+
+        </div>
+
+        <div class="ceefax-footer">
+            <div class="ceefax-navigation">
+                <span class="ceefax-nav-item"><a href="index.html" style="color:inherit;text-decoration:none;">HOME P301</a></span>
+                <span class="ceefax-nav-item"><a href="tamboozle-leaderboard.html" style="color:inherit;text-decoration:none;">LEADERBOARD P502</a></span>
+            </div>
+            <div class="ceefax-update">UPDATED: 00:00</div>
+        </div>
+    </div>
+
+    <button onclick="window.location.href='index.html'" class="ceefax-back-button">&#9664; BACK</button>
+
+    <script src="config.js"></script>
+    <script src="tamboozle.js"></script>
+</body>
+</html>
