@@ -1466,6 +1466,7 @@ body {
   cursor: pointer;
   width: 100%;
   transition: background-color 0.15s;
+  outline: none;
 }
 
 .ceefax-quiz-option:hover:not(:disabled) {

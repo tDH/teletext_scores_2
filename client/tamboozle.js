@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function showScreen(name) {
         Object.values(screens).forEach(s => { s.style.display = 'none'; });
         if (screens[name]) screens[name].style.display = 'block';
+        window.scrollTo(0, 0);
     }
 
     // ── Setup ──────────────────────────────────────────────────────────
@@ -66,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     async function startQuiz() {
+        // Prevent browser re-routing focus to the BACK button when setup screen hides
+        if (document.activeElement) document.activeElement.blur();
+
         const rawName = document.getElementById('quiz-name').value.trim().toUpperCase();
         const league  = document.getElementById('quiz-league').value;
         const decade  = document.getElementById('quiz-decade').value;
@@ -119,8 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Question display ───────────────────────────────────────────────
     function showQuestion(index) {
-        // Blur any previously focused button so focus ring doesn't carry over
-        if (document.activeElement) document.activeElement.blur();
         showScreen('quiz');
         const q = state.questions[index];
 
@@ -150,6 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.addEventListener('click', () => handleAnswer(i));
             optionsEl.appendChild(btn);
         });
+
+        // Blur after new buttons are in the DOM so no button inherits focus
+        if (document.activeElement) document.activeElement.blur();
 
         // Countdown timer
         clearInterval(state.timerInterval);
