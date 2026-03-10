@@ -66,8 +66,8 @@ function computeStats(matches, managerMap) {
         finished.flatMap(m => [m.league_entry_1, m.league_entry_2])
     )];
 
-    let longestWin  = { name: '—', length: 0 };
-    let longestLoss = { name: '—', length: 0 };
+    const longestWinEntries  = [];
+    const longestLossEntries = [];
 
     // Active streak entries: { name, length } for each manager
     const activeWinEntries  = [];
@@ -95,8 +95,8 @@ function computeStats(matches, managerMap) {
         });
 
         const name = managerMap[managerId] || '—';
-        if (maxWin  > longestWin.length)  longestWin  = { name, length: maxWin };
-        if (maxLoss > longestLoss.length) longestLoss = { name, length: maxLoss };
+        if (maxWin  > 0) longestWinEntries.push({ name, length: maxWin });
+        if (maxLoss > 0) longestLossEntries.push({ name, length: maxLoss });
 
         // Active streak — count consecutive same result from the most recent match backwards
         let activeWin = 0, activeLoss = 0;
@@ -118,7 +118,12 @@ function computeStats(matches, managerMap) {
         if (activeLoss > 0) activeLossEntries.push({ name, length: activeLoss });
     });
 
-    // Keep only teams sharing the longest active streak
+    // Keep only teams sharing the longest streak (all-time and active)
+    const maxLongestWin  = longestWinEntries.reduce((m, e) => Math.max(m, e.length), 0);
+    const maxLongestLoss = longestLossEntries.reduce((m, e) => Math.max(m, e.length), 0);
+    const longestWin  = longestWinEntries.filter(e => e.length === maxLongestWin);
+    const longestLoss = longestLossEntries.filter(e => e.length === maxLongestLoss);
+
     const maxActiveWin  = activeWinEntries.reduce((m, e) => Math.max(m, e.length), 0);
     const maxActiveLoss = activeLossEntries.reduce((m, e) => Math.max(m, e.length), 0);
     const activeWinStreak  = activeWinEntries.filter(e => e.length === maxActiveWin);
@@ -148,12 +153,20 @@ function renderStats(stats) {
         ? stats.activeLossStreak.map(e => ({ detail: e.name, sub: '', value: `${e.length} LOSSES`, colour: 'ceefax-standing-relegation' }))
         : [{ detail: '—', sub: '', value: '0 LOSSES', colour: '' }];
 
+    const longestWinRows = stats.longestWin.length
+        ? stats.longestWin.map(e => ({ detail: e.name, sub: '', value: `${e.length} WINS`, colour: '' }))
+        : [{ detail: '—', sub: '', value: '0 WINS', colour: '' }];
+
+    const longestLossRows = stats.longestLoss.length
+        ? stats.longestLoss.map(e => ({ detail: e.name, sub: '', value: `${e.length} LOSSES`, colour: '' }))
+        : [{ detail: '—', sub: '', value: '0 LOSSES', colour: '' }];
+
     container.innerHTML = [
         renderStatBlock('HIGHEST SCORE', [{ detail: stats.highScore.name, sub: `GW ${stats.highScore.gw}`, value: `${stats.highScore.points} PTS`, colour: 'ceefax-standing-promotion' }]),
         renderStatBlock('LOWEST SCORE',  [{ detail: stats.lowScore.name,  sub: `GW ${stats.lowScore.gw}`,  value: `${stats.lowScore.points} PTS`,  colour: 'ceefax-standing-relegation' }]),
         renderStatBlock('BIGGEST WIN MARGIN', [{ detail: stats.bigMargin.name, sub: `GW ${stats.bigMargin.gw}`, value: `+${stats.bigMargin.margin} PTS`, colour: '' }]),
-        renderStatBlock('LONGEST WIN STREAK',    [{ detail: stats.longestWin.name,  sub: '', value: `${stats.longestWin.length} WINS`,    colour: '' }]),
-        renderStatBlock('LONGEST LOSING STREAK', [{ detail: stats.longestLoss.name, sub: '', value: `${stats.longestLoss.length} LOSSES`, colour: '' }]),
+        renderStatBlock('LONGEST WIN STREAK',    longestWinRows),
+        renderStatBlock('LONGEST LOSING STREAK', longestLossRows),
         renderStatBlock('ACTIVE WIN STREAK',    activeWinRows),
         renderStatBlock('ACTIVE LOSING STREAK', activeLossRows),
     ].join('');
