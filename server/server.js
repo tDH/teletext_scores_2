@@ -39,6 +39,7 @@ app.use('/api/league', require('./routes/league'));
 app.use('/api/player', require('./routes/player'));
 app.use('/api/fixtures', require('./routes/fixtures'));
 app.use('/api/quiz', require('./routes/quiz'));
+app.use('/api/jimmyriddle', require('./routes/jimmyriddle'));
 
 // SPA fallback — serve index.html for non-file paths
 app.get('*', (req, res) => {
