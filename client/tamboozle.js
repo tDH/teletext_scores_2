@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Question display ───────────────────────────────────────────────
     function showQuestion(index) {
+        // Blur any previously focused button so focus ring doesn't carry over
+        if (document.activeElement) document.activeElement.blur();
         showScreen('quiz');
         const q = state.questions[index];
 
