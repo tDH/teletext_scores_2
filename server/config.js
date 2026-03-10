@@ -57,6 +57,12 @@ const config = {
   // Optional admin token for protecting POST sync routes.
   // If not set, POST routes are open (development mode).
   adminToken: process.env.ADMIN_TOKEN || null,
+
+  // Anthropic API key for quiz question generation (optional — quiz endpoint
+  // returns 503 if not set, server still starts normally without it).
+  anthropic: {
+    apiKey: process.env.ANTHROPIC_API_KEY || null,
+  },
 };
 
 module.exports = config;
