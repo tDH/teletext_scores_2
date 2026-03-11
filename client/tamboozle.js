@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         results: document.getElementById('results-screen'),
     };
     function showScreen(name) {
+        if (document.activeElement) document.activeElement.blur();
         Object.values(screens).forEach(s => { s.style.display = 'none'; });
         if (screens[name]) screens[name].style.display = 'block';
     }
@@ -66,9 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     async function startQuiz() {
-        // Prevent browser re-routing focus to the BACK button when setup screen hides
-        if (document.activeElement) document.activeElement.blur();
-
         const rawName = document.getElementById('quiz-name').value.trim().toUpperCase();
         const league  = document.getElementById('quiz-league').value;
         const decade  = document.getElementById('quiz-decade').value;
