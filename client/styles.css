@@ -1736,4 +1736,39 @@ body {
   font-size: 1.3em;
 }
 
+/* ── RonnieRebel ──────────────────────────────────────────────────── */
+.ronnierebel-setup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.ronnierebel-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  max-width: 420px;
+  width: 100%;
+}
+
+.ronnierebel-face-wrap {
+  flex-shrink: 0;
+}
+
+.ronnierebel-face-img {
+  width: 160px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.ronnierebel-quote {
+  color: var(--ceefax-yellow);
+  font-style: italic;
+  font-size: 0.95em;
+  line-height: 1.5;
+  border-left: 3px solid var(--ceefax-red);
+  padding-left: 0.8em;
+}
+
 
