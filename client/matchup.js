@@ -143,6 +143,15 @@ function applyAutoSubs(players, gwFinished) {
             }
             if (!starterIsGk && subIsGk) continue; // can't put GK in outfield spot
 
+            // Outfield formation constraint: result must keep ≥3 DEF, ≥2 MID, ≥1 FWD
+            if (!starterIsGk && !subIsGk) {
+                const others = startersCopy.filter((_, idx) => idx !== i);
+                const newDef = others.filter(p => p.element_type === 2).length + (sub.element_type === 2 ? 1 : 0);
+                const newMid = others.filter(p => p.element_type === 3).length + (sub.element_type === 3 ? 1 : 0);
+                const newFwd = others.filter(p => p.element_type === 4).length + (sub.element_type === 4 ? 1 : 0);
+                if (newDef < 3 || newMid < 2 || newFwd < 1) continue;
+            }
+
             // Apply the sub
             usedBench.add(j);
             notPlayed.push({ ...starter, autoSubOut: true });
