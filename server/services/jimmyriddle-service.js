@@ -27,6 +27,7 @@ const generatePlayer = async () => {
 Rules:
 - The player MUST be English, Scottish, Welsh, Northern Irish, or Irish (Republic of Ireland).
 - The player MUST have earned at least 1 full international cap for their nation.
+- The player MUST have been active (playing professionally) from 1990 onwards. Do NOT pick players whose careers ended before 1990.
 - Difficulty: hard to very hard. Avoid household names. Pick players that only a knowledgeable football fan would recognise — solid internationals, cult heroes, one-cap wonders, journeymen with interesting careers. Do NOT pick players like Wayne Rooney, Steven Gerrard, or Thierry Henry.
 - The "famousMoment" field MUST NOT contain the player's name (first name, surname, or any part of it). Describe the moment without naming the subject — e.g. "Scored the only goal in a famous European Cup upset" not "John Smith scored the only goal...".
 

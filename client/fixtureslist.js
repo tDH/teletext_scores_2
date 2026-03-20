@@ -109,7 +109,9 @@ function displayFixtures(gameweek) {
             status = `${match.league_entry_1_points}-${match.league_entry_2_points}`;
             statusClass = 'completed';
         } else if (match.started) {
-            status = 'LIVE';
+            const h = match.league_entry_1_points ?? 0;
+            const a = match.league_entry_2_points ?? 0;
+            status = `${h}-${a}`;
             statusClass = 'in-progress';
         }
 
@@ -126,6 +128,23 @@ function displayFixtures(gameweek) {
 
         fixturesContainer.appendChild(fixtureEl);
     });
+
+    // GW status banner
+    const statusEl = document.getElementById('gw-status');
+    if (statusEl && gameweekMatches.length > 0) {
+        const isLive      = gameweekMatches.some(m => m.started && !m.finished);
+        const isCompleted = gameweekMatches.every(m => m.finished);
+        if (isLive) {
+            statusEl.textContent = '● LIVE';
+            statusEl.className   = 'ceefax-gw-status live';
+        } else if (isCompleted) {
+            statusEl.textContent = 'COMPLETED';
+            statusEl.className   = 'ceefax-gw-status completed';
+        } else {
+            statusEl.textContent = 'UPCOMING';
+            statusEl.className   = 'ceefax-gw-status upcoming';
+        }
+    }
 
     if (prevGameweekButton && nextGameweekButton) {
         prevGameweekButton.disabled = gameweek <= 1;

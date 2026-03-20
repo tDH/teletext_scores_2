@@ -203,12 +203,10 @@ body {
   padding: 10px;
 }
 
-/* Make sure team names don't overflow */
+/* Allow multi-word team names (e.g. Manchester United) to wrap at word boundaries */
 .ceefax-team {
   width: 40%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 /* Styles for league listing page */
@@ -330,9 +328,7 @@ body {
 }
 
 .ceefax-team {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 .ceefax-team.home {
@@ -975,6 +971,17 @@ body {
   color: var(--ceefax-white);
   font-weight: bold;
 }
+
+.ceefax-gw-status {
+  text-align: center;
+  font-weight: bold;
+  padding: 3px 0 4px;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+}
+.ceefax-gw-status.upcoming  { color: var(--ceefax-white); }
+.ceefax-gw-status.live      { color: var(--ceefax-red); }
+.ceefax-gw-status.completed { color: var(--ceefax-green); }
 
 .ceefax-fixture-item {
   display: flex;
