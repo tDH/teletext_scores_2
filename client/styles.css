@@ -939,6 +939,12 @@ body {
   font-weight: bold;
 }
 
+.ceefax-predicted-total {
+  color: var(--ceefax-cyan);
+  border-top: 1px dashed var(--ceefax-cyan);
+  font-size: 0.9em;
+}
+
 /* Fixtures list page styling */
 .ceefax-fixtures-header {
   background-color: var(--ceefax-blue);

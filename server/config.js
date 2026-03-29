@@ -47,6 +47,16 @@ const config = {
     apiHost: 'v3.football.api-sports.io',
   },
 
+  scout: {
+    // Optional — if not set, AI predictions are silently skipped.
+    apiKey: process.env.OPENFPL_API_KEY || null,
+    apiBaseUrl: 'https://openfpl-api.p.rapidapi.com',
+    apiHost: 'openfpl-api.p.rapidapi.com',
+    // GW to start generating predictions from. Set to 32 for the 2025-26 season
+    // (mid-season introduction). Leave unset (defaults to 1) for future seasons.
+    predictionsStartGw: parseInt(process.env.PREDICTIONS_START_GW || '1', 10),
+  },
+
   cache: {
     defaultTtl: parseInt(process.env.CACHE_TTL_DEFAULT || '600', 10),
     liveTtl: parseInt(process.env.CACHE_TTL_LIVE || '120', 10),

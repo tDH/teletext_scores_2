@@ -192,6 +192,15 @@ function calcTeamTotal(starters) {
     return starters.reduce((sum, p) => sum + (p.points || 0), 0);
 }
 
+/** Render the AI Prediction total row inside a team column, if a score exists. */
+function renderPredictionRow(container, predictedScore) {
+    if (predictedScore == null) return;
+    const row = document.createElement('div');
+    row.className = 'ceefax-player-total ceefax-predicted-total';
+    row.innerHTML = `<div class="ceefax-player-name">AI PREDICTED</div><div class="ceefax-player-points">${predictedScore}</div>`;
+    container.appendChild(row);
+}
+
 // ─── DOM builders ─────────────────────────────────────────────
 
 /** Small section divider + label (e.g. "NOT PLAYED", "BENCH") */
@@ -298,8 +307,13 @@ function buildAccordion(player) {
  * Render a full team column into the given container element.
  * Shows: Starting XI → (auto-subbed in players highlighted) →
  *        NOT PLAYED section (if any) → BENCH section (unused subs).
+ *
+ * @param {HTMLElement} container
+ * @param {Array} players
+ * @param {boolean} gwFinished
+ * @param {number|null} predictedScore - AI predicted total, or null if unavailable
  */
-function renderTeamColumn(container, players, gwFinished) {
+function renderTeamColumn(container, players, gwFinished, predictedScore) {
     container.innerHTML = '';
 
     const { starters, notPlayed, bench } = applyAutoSubs(players, gwFinished);
@@ -321,6 +335,9 @@ function renderTeamColumn(container, players, gwFinished) {
     totalEl.className = 'ceefax-player-total';
     totalEl.innerHTML = `<div class="ceefax-player-name">TOTAL</div><div class="ceefax-player-points">${total}</div>`;
     container.appendChild(totalEl);
+
+    // AI Prediction row (GW32+ only, when predictions exist)
+    renderPredictionRow(container, predictedScore);
 
     // Bench section
     if (bench.length > 0) {
@@ -375,19 +392,26 @@ async function init() {
             throw new Error('Config not available');
         }
 
-        // Fetch game status, league data, and both teams in parallel
-        const [gameStatusResp, leagueResp, homeTeamResp, awayTeamResp] = await Promise.all([
+        // Fetch game status, league data, both teams, and AI predictions in parallel
+        const [gameStatusResp, leagueResp, homeTeamResp, awayTeamResp, predictionsResp] = await Promise.all([
             fetch(`${API_BASE_URL}/fpl/game`),
             fetch(`${API_BASE_URL}/league/${leagueId}/db`),
             fetch(`${API_BASE_URL}/league/manager/${homeId}/gameweek/${gw}/team`),
             fetch(`${API_BASE_URL}/league/manager/${awayId}/gameweek/${gw}/team`),
+            fetch(`${API_BASE_URL}/scout/gw/${gw}/predictions`),
         ]);
 
-        // Parse responses (non-ok is tolerated for team data — gw may not have picks yet)
-        const gameStatus = gameStatusResp.ok ? await gameStatusResp.json() : null;
-        const leagueData = leagueResp.ok     ? await leagueResp.json()     : null;
-        const homeData   = homeTeamResp.ok   ? await homeTeamResp.json()   : null;
-        const awayData   = awayTeamResp.ok   ? await awayTeamResp.json()   : null;
+        // Parse responses (non-ok is tolerated for team/prediction data)
+        const gameStatus    = gameStatusResp.ok    ? await gameStatusResp.json()    : null;
+        const leagueData    = leagueResp.ok         ? await leagueResp.json()        : null;
+        const homeData      = homeTeamResp.ok       ? await homeTeamResp.json()      : null;
+        const awayData      = awayTeamResp.ok       ? await awayTeamResp.json()      : null;
+        const predictionsData = predictionsResp.ok  ? await predictionsResp.json()   : null;
+
+        // Build manager_id → predicted_score lookup (null if no predictions for this GW)
+        const predMap = predictionsData?.predictions || null;
+        const homePredicted = predMap ? (predMap[homeId] ?? null) : null;
+        const awayPredicted = predMap ? (predMap[awayId] ?? null) : null;
 
         const gwFinished = isGwFinished(gameStatus, gw);
 
@@ -425,13 +449,13 @@ async function init() {
 
         // Render teams
         if (homeData && homeData.players && homeData.players.length > 0) {
-            renderTeamColumn(homeContainer, homeData.players, gwFinished);
+            renderTeamColumn(homeContainer, homeData.players, gwFinished, homePredicted);
         } else {
             homeContainer.innerHTML = '<div class="ceefax-info">NO PICKS YET FOR THIS GAMEWEEK</div>';
         }
 
         if (awayData && awayData.players && awayData.players.length > 0) {
-            renderTeamColumn(awayContainer, awayData.players, gwFinished);
+            renderTeamColumn(awayContainer, awayData.players, gwFinished, awayPredicted);
         } else {
             awayContainer.innerHTML = '<div class="ceefax-info">NO PICKS YET FOR THIS GAMEWEEK</div>';
         }

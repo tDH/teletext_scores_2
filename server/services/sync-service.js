@@ -12,6 +12,7 @@ const fplApi = require('../api/fpl-client');
 const playerService = require('./player-service');
 const leagueService = require('./league-service');
 const gameweekService = require('./gameweek-service');
+const predictionService = require('./prediction-service');
 const db = require('../db');
 
 /**
@@ -175,6 +176,16 @@ const runWeeklyStart = async (leagueId) => {
       );
     }
   }
+
+  // 3. AI predictions — runs after picks are saved; skips gracefully if API key
+  //    is absent, GW is below the start threshold, or predictions already exist.
+  steps.push(
+    await runStep('generate-predictions', async () => {
+      const result = await predictionService.generatePredictions(leagueId, currentGameweek);
+      if (result.skipped) return `Skipped: ${result.reason}`;
+      return `Generated predictions for ${result.saved} managers`;
+    })
+  );
 
   const success = steps.every((s) => s.status === 'ok');
   return { success, gameweek: currentGameweek, steps };
